@@ -5,6 +5,8 @@ import com.protsaha.brightfuture.repository.StudentRepository;
 import com.protsaha.brightfuture.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +18,11 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> getAllStudents() {
+//        Student s1 = new Student();
+//        s1.setName("leela");
+//        System.out.println(s1);
         return studentRepository.findAll();
+
     }
 
     @Override
