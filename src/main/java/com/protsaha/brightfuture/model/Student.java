@@ -29,7 +29,7 @@ public class Student {
     private AadharInfo aadharInfo;
     private Admission admission;
     private PersonalDetails personalDetails;
-    private AddressDetails address;
+    private Address_Details address;
     private Grade grade;
     private Parents parents;
     private PreviousSchool previousSchool;
