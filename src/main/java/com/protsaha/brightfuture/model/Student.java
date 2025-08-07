@@ -2,15 +2,8 @@ package com.protsaha.brightfuture.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import com.protsaha.brightfuture.model.PersonalDetails;  // 👈 Add this
-import com.protsaha.brightfuture.model.Admission;
-import com.protsaha.brightfuture.model.AadharInfo;
-import com.protsaha.brightfuture.model.PreviousSchool;
-import com.protsaha.brightfuture.model.Parents;
 
 
 @Document(collection = "Student")
@@ -29,7 +22,7 @@ public class Student {
     private AadharInfo aadharInfo;
     private Admission admission;
     private PersonalDetails personalDetails;
-    private Address_Details address;
+    private AddressDetails address;
     private Grade grade;
     private Parents parents;
     private PreviousSchool previousSchool;
