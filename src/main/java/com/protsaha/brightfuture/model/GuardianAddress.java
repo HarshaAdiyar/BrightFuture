@@ -2,7 +2,7 @@ package com.protsaha.brightfuture.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Address {
+public class GuardianAddress {
 
     @JsonProperty("village")
     private String village;

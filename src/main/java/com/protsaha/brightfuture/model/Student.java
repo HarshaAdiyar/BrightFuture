@@ -14,9 +14,15 @@ public class Student {
     private String dob;
     private String aadhar;
     private ContactDetails contactDetails;
+    private String houseNumber;
+    private String houseName;
     private Address address;
     private Grade grade;
     private Parents parents;
+    private Admission admission;
+    private AadharInfo aadharInfo;
+    private PersonalDetails personalDetails;
+    private PreviousSchool previousSchool;
 
     @Override
     public String toString() {
@@ -27,10 +33,15 @@ public class Student {
                 ", dob='" + dob + '\'' +
                 ", aadhar='" + aadhar + '\'' +
                 ", contactDetails=" + contactDetails +
+                ", houseNumber='" + houseNumber + '\'' +
+                ", houseName='" + houseName + '\'' +
                 ", address=" + address +
                 ", grade=" + grade +
                 ", parents=" + parents +
+                ", admission=" + admission +
+                ", AadharInfo=" + aadharInfo +
+                ", personalDetails=" + personalDetails +
+                ", previousSchool=" + previousSchool +
                 '}';
     }
-    // Getters and Setters (Omitted for brevity)
 }
