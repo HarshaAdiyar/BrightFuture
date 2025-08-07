@@ -2,7 +2,6 @@ package com.protsaha.brightfuture.model;
 
 import lombok.Data;
 
-// Address Model Class
 @Data
 public class Address {
     private String houseNumber;
@@ -16,5 +15,4 @@ public class Address {
     private String country;
     private String pin;
     private String contactNo;
-
 }
