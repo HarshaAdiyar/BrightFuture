@@ -14,8 +14,6 @@ public class Student {
     private String dob;
     private String aadhar;
     private ContactDetails contactDetails;
-    private String houseNumber;
-    private String houseName;
     private Address address;
     private Grade grade;
     private Parents parents;
@@ -32,9 +30,7 @@ public class Student {
                 ", age=" + age +
                 ", dob='" + dob + '\'' +
                 ", aadhar='" + aadhar + '\'' +
-                ", contactDetails=" + contactDetails +
-                ", houseNumber='" + houseNumber + '\'' +
-                ", houseName='" + houseName + '\'' +
+                ", ContactDetails=" + contactDetails +
                 ", address=" + address +
                 ", grade=" + grade +
                 ", parents=" + parents +
