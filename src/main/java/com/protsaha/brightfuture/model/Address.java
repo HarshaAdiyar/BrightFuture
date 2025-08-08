@@ -2,14 +2,26 @@ package com.protsaha.brightfuture.model;
 
 import lombok.Data;
 
-// Address Model Class
 @Data
 public class Address {
-    private String street;
-    private String city;
-    private String taluk;
-    private String district;
-    private String state;
-    private String country;
-    private String postalCode;
+    private ParentsAddress parentsAddress;
+    private GuardianAddress guardianAddress;
+
+    @Data
+    public static class ParentsAddress {
+        private String village;
+        private String taluk;
+        private String district;
+        private String pin;
+        private String contactNo;
+    }
+
+    @Data
+    public static class GuardianAddress {
+        private String village;
+        private String taluk;
+        private String district;
+        private String pin;
+        private String contactNo;
+    }
 }
