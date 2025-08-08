@@ -4,7 +4,28 @@ import lombok.Data;
 
 @Data
 public class Parents {
-    private String father;
-    private String mother;
-    private String caregiver;
+    private Father father;
+    private Mother mother;
+    private Guardian guardian;
+
+    @Data
+    public static class Father {
+        private String name;
+        private String aadharNo;
+        private String occupation;
+        private Integer annualIncome;
+    }
+
+    @Data
+    public static class Mother {
+        private String name;
+        private String aadharNo;
+        private String occupation;
+    }
+
+    @Data
+    public static class Guardian {
+        private String name;
+        private String contactNo;
+    }
 }
