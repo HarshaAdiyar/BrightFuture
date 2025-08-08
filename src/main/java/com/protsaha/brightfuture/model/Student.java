@@ -17,6 +17,7 @@ public class Student {
     private PreviousSchool previousSchool;
     private Address address;
 
+
     @Override
     public String toString() {
         return "Student{" +
