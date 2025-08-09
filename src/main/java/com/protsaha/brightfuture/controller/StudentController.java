@@ -33,6 +33,8 @@ public class StudentController {
         return student.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+
+
     @PostMapping
     @Operation(summary = "Add a New Student", description = "Add a new student to the database.")
     public Student addStudent(@RequestBody Student student) {
@@ -40,6 +42,7 @@ public class StudentController {
         System.out.println("print Student  "+student.toString());
         return studentService.addStudent(student);
     }
+
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete Student by ID", description = "Delete a student using their ID.")
