@@ -2,6 +2,7 @@ package com.protsaha.brightfuture.model;
 
 import lombok.Data;
 
+
 @Data
 public class Parents {
     private Father father;
@@ -9,18 +10,20 @@ public class Parents {
     private Guardian guardian;
 
     @Data
-    public static class Father {
+    public static class PersonInfo {
         private String name;
         private String aadharNo;
         private String occupation;
+    }
+
+    @Data
+    public static class Father extends PersonInfo {
         private Integer annualIncome;
     }
 
     @Data
-    public static class Mother {
-        private String name;
-        private String aadharNo;
-        private String occupation;
+    public static class Mother extends PersonInfo {
+
     }
 
     @Data
@@ -29,3 +32,4 @@ public class Parents {
         private String contactNo;
     }
 }
+
