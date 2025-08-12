@@ -14,5 +14,6 @@ public class Address {
         private String district;
         private String pin;
         private String contactNo;
+
     }
 }
