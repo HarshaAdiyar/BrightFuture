@@ -5,7 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class BrightFutureApplication {
+
 	public static void main(String[] args) {
-        SpringApplication.run(BrightFutureApplication.class, args);
+		SpringApplication.run(BrightFutureApplication.class, args);
 	}
+
 }
