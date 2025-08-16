@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Multi-step Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="student_registration_output.css">
+</head>
+<body class="bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 min-h-screen flex justify-center items-start py-10 px-4 text-gray-900">
+
+<form id="regForm" class="bg-white shadow-xl rounded-xl w-full max-w-7xl p-10 space-y-10 border border-blue-300" novalidate>
+    <!-- Header -->
+    <div class="text-center">
+        <h1 class="text-4xl font-bold text-blue-600 drop-shadow-sm">Student Registration</h1>
+        <p class="text-blue-700 mt-1">Please fill in all the required details</p>
+        <div class="mt-4 h-1 bg-blue-200 rounded-full overflow-hidden">
+            <div id="progressBar" class="h-full bg-gradient-to-r from-blue-400 to-blue-600 w-full"></div>
+        </div>
+        <p id="pageIndicator" class="text-sm mt-2 text-blue-600">Page 1 of 2</p>
+    </div>
+
+    <!-- Page 1 Content -->
+    <div id="page1">
+        <!-- Admission Information -->
+        <section>
+            <h2 class="text-2xl font-semibold text-blue-600 mb-4 border-b border-blue-400 pb-1">Admission Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <label for="studentID" class="text-sm font-medium text-blue-700 mb-1 block">Student ID *</label>
+                    <input type="number" id="studentID" name="studentID" min="1" required placeholder="Enter ID" class="w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 outline-none text-gray-900 placeholder-blue-400">
+                </div>
+                <div>
+                    <label for="dateAdmission" class="text-sm font-medium text-blue-700 mb-1 block">Date of Admission *</label>
+                    <input type="date" id="dateAdmission" name="dateAdmission" required class="w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 outline-none text-gray-900">
+                </div>
+                <div>
+                    <label for="classSelect" class="text-sm font-medium text-blue-700 mb-1 block">Class *</label>
+                    <select id="classSelect" name="classSelect" required class="w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 outline-none text-gray-900">
+                        <option value="">Select</option>
+                        <option value="1">Class 1</option>
+                        <option value="2">Class 2</option>
+                        <option value="3">Class 3</option>
+                        <option value="4">Class 4</option>
+                        <option value="5">Class 5</option>
+                        <option value="6">Class 6</option>
+                        <option value="7">Class 7</option>
+                        <option value="8">Class 8</option>
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-sm font-medium text-blue-700 mb-1 block">Gender *</label>
+                    <div class="flex gap-4 mt-2 text-blue-800">
+                        <label class="inline-flex items-center"><input type="radio" name="gender" value="boy" required class="mr-2"> Boy</label>
+                        <label class="inline-flex items-center"><input type="radio" name="gender" value="girl" class="mr-2"> Girl</label>
+                    </div>
+                </div>
+                <div>
+                    <label for="dob" class="text-sm font-medium text-blue-700 mb-1 block">Date of Birth *</label>
+                    <input type="date" id="dob" name="dob" required class="w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 outline-none text-gray-900">
+                </div>
+                <div>
+                    <label for="age" class="text-sm font-medium text-blue-700 mb-1 block">Age</label>
+                    <input type="text" id="age" name="age" disabled placeholder="Auto-calculated" class="w-full p-3 bg-blue-100 border border-blue-300 rounded-lg text-blue-500 cursor-not-allowed">
+                </div>
+                <div>
+                    <label for="placeOfBirth" class="text-sm font-medium text-blue-700 mb-1 block">Place of Birth</label>
+                    <input type="text" id="placeOfBirth" name="placeOfBirth" pattern="^[A-Za-z ]+$" class="w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 text-gray-900">
+                </div>
+                <div>
+                    <label class="text-sm font-medium text-blue-700 mb-1 block">Residential *</label>
+                    <div class="flex gap-4 mt-2 text-blue-800">
+                        <label class="inline-flex items-center"><input type="radio" name="residential" value="yes" required class="mr-2"> Yes</label>
+                        <label class="inline-flex items-center"><input type="radio" name="residential" value="no" class="mr-2"> No</label>
+                    </div>
+                </div>
+                <div>
+                    <label for="schoolPlace" class="text-sm font-medium text-blue-700 mb-1 block">School Place</label>
+                    <input type="text" id="schoolPlace" name="schoolPlace" pattern="^[A-Za-z ]+$" class="w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 text-gray-900">
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Aadhar Information -->
+        <section class="mt-10">
+            <h2 class="text-2xl font-semibold text-blue-600 mb-4 border-b border-blue-400 pb-1">Student Aadhar Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="studentName" class="text-sm font-medium text-blue-700 mb-1 block">Student Name *</label>
+                    <input type="text" id="studentName" name="studentName" pattern="^[A-Za-z ]+$" required class="w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 text-gray-900">
+                </div>
+                <div>
+                    <label for="studentAadhar" class="text-sm font-medium text-blue-700 mb-1 block">Student Aadhar No *</label>
+                    <input type="text" id="studentAadhar" name="studentAadhar" pattern="\d{4}-\d{4}-\d{4}" required placeholder="0000-0000-0000" title="Enter Aadhar No in format: 0000-0000-0000" class="w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 text-gray-900">
+                </div>
+            </div>
+        </section>
+
+        <!-- Parents Information -->
+        <section class="mt-10">
+            <h2 class="text-2xl font-semibold text-blue-600 mb-4 border-b border-blue-400 pb-1">Parents/Guardian Information</h2>
+
+            <!-- Father's Details -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <label for="fatherName" class="text-sm font-medium text-blue-700 mb-1 block">Father's Name *</label>
+                    <input type="text" id="fatherName" name="fatherName" pattern="^[A-Za-z ]+$" required class="w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 text-gray-900">
+                </div>
+                <div>
+                    <label for="fatherAadhar" class="text-sm font-medium text-blue-700 mb-1 block">Father's Aadhar No *</label>
+                    <input type="text" id="fatherAadhar" name="fatherAadhar" pattern="\d{4}-\d{4}-\d{4}" required placeholder="0000-0000-0000" title="Enter Aadhar No in format: 0000-0000-0000" class="w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 text-gray-900">
+                </div>
+                <div>
+                    <label for="fatherOccupation" class="text-sm font-medium text-blue-700 mb-1 block">Father's Occupation</label>
+                    <input type="text" id="fatherOccupation" name="fatherOccupation" class="w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 text-gray-900">
+                </div>
+            </div>
+
+            <!-- Mother's Details -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div>
+                    <label for="motherName" class="text-sm font-medium text-blue-700 mb-1 block">Mother's Name *</label>
+                    <input type="text" id="motherName" name="motherName" pattern="^[A-Za-z ]+$" required class="w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 text-gray-900">
+                </div>
+                <div>
+                    <label for="motherAadhar" class="text-sm font-medium text-blue-700 mb-1 block">Mother's Aadhar No *</label>
+                    <input type="text" id="motherAadhar" name="motherAadhar" pattern="\d{4}-\d{4}-\d{4}" required placeholder="0000-0000-0000" title="Enter Aadhar No in format: 0000-0000-0000" class="w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 text-gray-900">
+                </div>
+            </div>
+
+            <!-- Guardian Details -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div>
+                    <label for="guardianName" class="text-sm font-medium text-blue-700 mb-1 block">Guardian's Name</label>
+                    <input type="text" id="guardianName" name="guardianName" pattern="^[A-Za-z ]+$" class="w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 text-gray-900">
+                </div>
+                <div>
+                    <label for="guardianContact" class="text-sm font-medium text-blue-700 mb-1 block">Contact No</label>
+                    <input type="text" id="guardianContact" name="guardianContact" pattern="\d{10}" placeholder="10-digit number" class="w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 text-gray-900">
+                </div>
+            </div>
+        </section>
+    <!-- Form Navigation Buttons -->
+    <div class="flex justify-between mt-10">
+        <span></span> <!-- empty span to align Next button to the right -->
+        <button type="button" id="nextBtn" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Next</button>
+    </div>
+    </div>
+
+    <div id="page2" class="hidden">
+
+        <!-- Personal Details Section -->
+        <section>
+            <h2 class="section-heading">👤 Personal Details</h2>
+
+            <div class="form-grid mb-4">
+                <div>
+                    <label for="nationality" class="form-label">Nationality *</label>
+                    <input type="text" id="nationality" name="nationality" pattern="^[A-Za-z ]+$" required class="form-input" />
+                </div>
+                <div>
+                    <label for="caste" class="form-label">Caste *</label>
+                    <input type="text" id="caste" name="caste" pattern="^[A-Za-z ]+$" required class="form-input" />
+                </div>
+                <div>
+                    <label for="category" class="form-label">Category *</label>
+                    <select id="category" name="category" required class="form-select">
+                        <option value="">Select Category</option>
+                        <option value="general">General</option>
+                        <option value="obc">OBC</option>
+                        <option value="sc">SC</option>
+                        <option value="st">ST</option>
+                        <option value="others">Others</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-grid-2 mb-4">
+                <div>
+                    <label for="dependents" class="form-label">Number of Dependents *</label>
+                    <input type="number" id="dependents" name="dependents" min="0" required class="form-input" />
+                </div>
+                <div>
+                    <label for="motherTongue" class="form-label">Mother Tongue *</label>
+                    <input type="text" id="motherTongue" name="motherTongue" pattern="^[A-Za-z ]+$" required class="form-input" />
+                </div>
+            </div>
+
+            <div>
+                <p class="form-label">Disability *</p>
+                <div class="radio-group mb-4">
+                    <label class="form-checkbox-label">
+                        <input type="radio" name="disability" value="yes" required class="mr-2" onchange="toggleDisabilityType(true)" /> Yes
+                    </label>
+                    <label class="form-checkbox-label">
+                        <input type="radio" name="disability" value="no" class="mr-2" onchange="toggleDisabilityType(false)" /> No
+                    </label>
+                </div>
+
+                <div id="disabilityTypeDiv" class="hidden">
+                    <label for="disabilityType" class="form-label">Disability Type *</label>
+                    <select id="disabilityType" name="disabilityType" class="form-select">
+                        <option value="">Select Disability Type</option>
+                        <option value="visual">Visual Impairment</option>
+                        <option value="hearing">Hearing Impairment</option>
+                        <option value="physical">Physical Disability</option>
+                        <option value="mental">Mental Disability</option>
+                        <option value="multiple">Multiple Disabilities</option>
+                    </select>
+                </div>
+            </div>
+
+            <script>
+                function toggleDisabilityType(show) {
+                  const div = document.getElementById('disabilityTypeDiv');
+                  const select = document.getElementById('disabilityType');
+
+                  if (show) {
+                    div.classList.remove('hidden');      // show dropdown
+                    select.setAttribute('required', ''); // make it required
+                  } else {
+                    div.classList.add('hidden');         // hide dropdown
+                    select.removeAttribute('required');  // remove required
+                    select.value = "";                    // reset selection
+                  }
+                }
+            </script>
+
+
+            <!-- Previous School Information Section -->
+        <section class="form-section">
+            <h2 class="section-heading">Previous School Information</h2>
+
+            <div class="form-grid-2 mb-4">
+                <div>
+                    <label for="schoolName" class="form-label">School Name *</label>
+                    <input type="text" id="schoolName" name="schoolName" pattern="^[A-Za-z ]+$" required class="form-input" />
+                </div>
+                <div>
+                    <label for="schoolContact" class="form-label">Contact Number *</label>
+                    <input type="tel" id="schoolContact" name="schoolContact" required pattern="[0-9]{10}" placeholder="10-digit number" class="form-input" />
+                </div>
+            </div>
+
+            <div class="form-grid mb-4">
+                <div>
+                    <label for="villageArea" class="form-label">Village/Area *</label>
+                    <input type="text" id="villageArea" name="villageArea" required class="form-input" />
+                </div>
+                <div>
+                    <label for="taluk" class="form-label">Taluk *</label>
+                    <input type="text" id="taluk" name="taluk" required class="form-input" />
+                </div>
+                <div>
+                    <label for="district" class="form-label">District *</label>
+                    <input type="text" id="district" name="district" required class="form-input" />
+                </div>
+            </div>
+
+            <div class="md:w-1/3 mb-4">
+                <label for="pincode" class="form-label">Pincode *</label>
+                <input type="number" id="pincode" name="pincode" required min="100000" max="999999" class="form-input" />
+            </div>
+        </section>
+
+        <!-- Address Information Section -->
+        <section class="form-section">
+            <h2 class="section-heading">Address Information</h2>
+            <!-- Parent Address Fields -->
+            <form class="form-section">
+                <!-- Parent Address -->
+                <fieldset class="border border-blue-300 p-4 rounded-lg">
+                    <legend class="section-heading">Parent's Address</legend>
+
+                    <div class="form-grid">
+                        <div>
+                            <label for="parentVillageArea" class="form-label">Village/Area *</label>
+                            <input type="text" id="parentVillageArea" name="parentVillageArea" class="form-input">
+                        </div>
+                        <div>
+                            <label for="parentTaluk" class="form-label">Taluk *</label>
+                            <input type="text" id="parentTaluk" name="parentTaluk" class="form-input">
+                        </div>
+                        <div>
+                            <label for="parentDistrict" class="form-label">District *</label>
+                            <input type="text" id="parentDistrict" name="parentDistrict" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div>
+                            <label for="parentPin" class="form-label">PIN Code *</label>
+                            <input type="text" id="parentPin" name="parentPin" maxlength="6" class="form-input">
+                        </div>
+                        <div>
+                            <label for="parentContact" class="form-label">Contact Number *</label>
+                            <input type="tel" id="parentContact" name="parentContact" class="form-input">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Guardian Address -->
+                <fieldset class="border border-blue-300 p-4 rounded-lg">
+                    <legend class="section-heading">Guardian's Address</legend>
+
+                    <div class="mb-4">
+                        <label class="form-checkbox-label">
+                            <input type="checkbox" id="sameAsParent" class="mr-2">
+                            Same as Parent's Address
+                        </label>
+                    </div>
+
+                    <div class="form-grid">
+                        <div>
+                            <label for="guardianVillageArea" class="form-label">Village/Area</label>
+                            <input type="text" id="guardianVillageArea" name="guardianVillageArea" class="form-input">
+                        </div>
+                        <div>
+                            <label for="guardianTaluk" class="form-label">Taluk</label>
+                            <input type="text" id="guardianTaluk" name="guardianTaluk" class="form-input">
+                        </div>
+                        <div>
+                            <label for="guardianDistrict" class="form-label">District</label>
+                            <input type="text" id="guardianDistrict" name="guardianDistrict" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div>
+                            <label for="guardianPin" class="form-label">PIN Code</label>
+                            <input type="text" id="guardianPin" name="guardianPin" maxlength="6" class="form-input">
+                        </div>
+                        <div>
+                            <label for="guardianContact" class="form-label">Contact Number</label>
+                            <input type="tel" id="guardianContact" name="guardianContact" class="form-input">
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+            <script>
+                const checkbox = document.getElementById('sameAsParent');
+                const fields = ['VillageArea', 'Taluk', 'District', 'Pin', 'Contact'];
+
+                checkbox.addEventListener('change', () => {
+                    fields.forEach(field => {
+                        const parentField = document.getElementById(`parent${field}`);
+                        const guardianField = document.getElementById(`guardian${field}`);
+                        if (checkbox.checked) {
+                            guardianField.value = parentField.value;
+                            guardianField.classList.add('form-input-disabled');
+                            guardianField.disabled = true;
+                        } else {
+                            guardianField.value = '';
+                            guardianField.classList.remove('form-input-disabled');
+                            guardianField.disabled = false;
+                        }
+                    });
+                });
+
+                // Update guardian fields dynamically if parent changes
+                fields.forEach(field => {
+                    const parentField = document.getElementById(`parent${field}`);
+                    const guardianField = document.getElementById(`guardian${field}`);
+                    parentField.addEventListener('input', () => {
+                        if (checkbox.checked) {
+                            guardianField.value = parentField.value;
+                        }
+                    });
+                });
+            </script>
+
+
+
+            <!-- Buttons for Page 2 -->
+            <div class="flex justify-between mt-10">
+                <button type="button" id="prevBtn" class="bg-gray-400 text-white px-6 py-2 rounded-lg hover:bg-gray-500">Previous</button>
+                <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Submit</button>
+            </div>
+        </div>
+
+</form>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('regForm');
+      const pages = ['page1', 'page2'];
+      let currentPage = 0;
+
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const pageIndicator = document.getElementById('pageIndicator');
+
+      const disabilityStatusSelect = document.getElementById('disabilityStatus');
+      const disabilityTypeContainer = document.getElementById('disabilityTypeContainer');
+
+      function showPage(index) {
+        pages.forEach((pageId, i) => {
+          document.getElementById(pageId).classList.toggle('hidden', i !== index);
+        });
+        pageIndicator.textContent = `Page ${index + 1} of ${pages.length}`;
+        prevBtn.disabled = index === 0;
+        nextBtn.textContent = index === pages.length - 1 ? 'Submit' : 'Next';
+
+        // Adjust progress bar width
+        const progress = ((index + 1) / pages.length) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+      }
+
+      function validatePage() {
+        const inputs = document.querySelectorAll(`#${pages[currentPage]} [required]`);
+        for (const input of inputs) {
+          if (input.type === 'radio') {
+            const radios = document.getElementsByName(input.name);
+            if (![...radios].some(r => r.checked)) {
+              alert(`Please select ${input.name.replace(/([A-Z])/g, ' $1')}`);
+              return false;
+            }
+          } else if (!input.value.trim()) {
+            alert(`Please fill the ${input.previousElementSibling.textContent.replace('*', '').trim()}`);
+            input.focus();
+            return false;
+          }
+          if (input.pattern) {
+            const regex = new RegExp(input.pattern);
+            if (!regex.test(input.value)) {
+              alert(`Please enter a valid ${input.previousElementSibling.textContent.replace('*', '').trim()}`);
+              input.focus();
+              return false;
+            }
+          }
+        }
+        return true;
+      }
+
+      nextBtn.addEventListener('click', () => {
+        if (!validatePage()) return;
+
+        if (currentPage === pages.length - 1) {
+          alert('Form submitted successfully!');
+          form.reset();
+          currentPage = 0;
+          showPage(currentPage);
+          return;
+        }
+        currentPage++;
+        showPage(currentPage);
+      });
+
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 0) {
+          currentPage--;
+          showPage(currentPage);
+        }
+      });
+
+      if (disabilityStatusSelect && disabilityTypeContainer) {
+        disabilityStatusSelect.addEventListener('change', () => {
+          if (disabilityStatusSelect.value === 'yes') {
+            disabilityTypeContainer.classList.remove('hidden');
+          } else {
+            disabilityTypeContainer.classList.add('hidden');
+            document.getElementById('disabilityType').value = '';
+          }
+        });
+      }
+
+      // ✅ Age Calculator Logic
+      const dobInput = document.getElementById('dob');
+      const ageInput = document.getElementById('age');
+      if (dobInput && ageInput) {
+        dobInput.addEventListener('change', function () {
+          const dob = new Date(this.value);
+          const today = new Date();
+          let age = today.getFullYear() - dob.getFullYear();
+          const m = today.getMonth() - dob.getMonth();
+          if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+            age--;
+          }
+          ageInput.value = age >= 0 ? age : '';
+        });
+      }
+
+      showPage(currentPage);
+    });
+</script>
+
+</body>
+</html>
