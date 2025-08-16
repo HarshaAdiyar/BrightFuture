@@ -53,19 +53,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
   prevBtn.addEventListener("click", () => showPage(1));
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault(); // prevent default submit
-    // Ensure Page 2 is validated before submission
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
     if (currentPage === 2 && validatePage(2)) {
-      alert("Form submitted successfully!");
-      form.reset();
-      showPage(1);
-      progressBar.style.width = "50%";
-      ageInput.value = "";
+      // Build JSON matching your Student model
+      // Example: Adjust according to your actual form inputs!
+      const studentData = {
+        studentId: document.getElementById("studentId")?.value || "",  // add your own input IDs here
+        admission: {
+          className: document.getElementById("className")?.value || "",
+          dob: dobInput.value,
+          gender: document.getElementById("gender")?.value || ""
+          // add other admission fields here if needed
+        },
+        // add other nested objects like aadharInfo, parents etc. similarly
+      };
+
+      try {
+        const response = await fetch("http://localhost:8080/api/students", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(studentData)
+        });
+
+        if (response.ok) {
+          alert("Student saved successfully!");
+          form.reset();
+          showPage(1);
+          progressBar.style.width = "50%";
+          ageInput.value = "";
+        } else {
+          alert("Failed to save student.");
+        }
+      } catch (err) {
+        console.error("Error:", err);
+        alert("Server error.");
+      }
     } else if (currentPage === 1) {
       alert("Please fill Page 1 completely before proceeding.");
     }
   });
+
   dobInput.addEventListener("change", () => {
     const dobValue = dobInput.value;
     if (dobValue) {
