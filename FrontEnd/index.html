@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Registration Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind CSS -->
+  <link rel="stylesheet" href="./css/tailwind.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-100 flex items-center justify-center py-10">
+  <div class="w-full max-w-6xl bg-white rounded-2xl shadow-xl p-12 border border-gray-200">
+    
+    <h1 class="text-4xl font-bold text-blue-800 text-center mb-10 tracking-wide">
+      Student Registration Form
+    </h1>
+
+    <form id="registration-form" class="space-y-12">
+
+      <!-- PAGE 1 -->
+      <div id="page1">
+        <h2 class="text-2xl font-semibold mb-6 text-blue-700 border-b pb-2">📝 Admission Information</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          <!-- Admission Info -->
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">
+              Student ID <span class="text-red-500">*</span>
+            </label>
+            <input required type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400 outline-none"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">
+              Date of Admission <span class="text-red-500">*</span>
+            </label>
+            <input required type="date" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400 outline-none"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">
+              Class <span class="text-red-500">*</span>
+            </label>
+            <select required class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400 outline-none">
+              <option value="">Select Class</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">
+              Gender <span class="text-red-500">*</span>
+            </label>
+            <div class="flex gap-10 mt-2 text-lg">
+              <label class="inline-flex items-center text-gray-700">
+                <input type="radio" name="gender" value="Boy" required class="mr-2 accent-blue-600"/>Boy
+              </label>
+              <label class="inline-flex items-center text-gray-700">
+                <input type="radio" name="gender" value="Girl" class="mr-2 accent-blue-600"/>Girl
+              </label>
+            </div>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">
+              Date of Birth <span class="text-red-500">*</span>
+            </label>
+            <input required type="date" id="dob" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Age</label>
+            <input type="number" id="age" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50" placeholder="Auto-calculated" readonly/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Place of Birth</label>
+            <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">
+              Residential <span class="text-red-500">*</span>
+            </label>
+            <div class="flex gap-10 mt-2 text-lg">
+              <label class="inline-flex items-center text-gray-700">
+                <input type="radio" name="residential" value="Yes" required class="mr-2 accent-blue-600"/>Yes
+              </label>
+              <label class="inline-flex items-center text-gray-700">
+                <input type="radio" name="residential" value="No" class="mr-2 accent-blue-600"/>No
+              </label>
+            </div>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">School Place</label>
+            <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">SATS No</label>
+            <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">PEN No</label>
+            <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">UDISE TC Status</label>
+            <select class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400">
+              <option value="">Select</option>
+              <option>Available</option>
+              <option>Not Available</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">TC In Date</label>
+            <input type="date" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">TC Received</label>
+            <select class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400">
+              <option value="">Select</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Remark</label>
+            <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+        </div>
+        <!-- Student Aadhar Information -->
+        <h2 class="text-2xl font-semibold mb-6 mt-10 text-blue-700 border-b pb-2">🆔 Student Aadhar Information</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">
+              Student Name <span class="text-red-500">*</span>
+            </label>
+            <input required type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">
+              Student Aadhar No <span class="text-red-500">*</span>
+            </label>
+            <input required type="text" pattern="\d{4}-\d{4}-\d{4}" maxlength="14" placeholder="0000-0000-0000" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Student RD No</label>
+            <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+        </div>
+        <!-- Parents Information -->
+        <h2 class="text-2xl font-semibold mb-6 mt-10 text-blue-700 border-b pb-2">👨‍👩‍👧‍👦 Parents Information</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">
+              Father's Name <span class="text-red-500">*</span>
+            </label>
+            <input required type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">
+              Father's Aadhar No <span class="text-red-500">*</span>
+            </label>
+            <input required type="text" pattern="\d{4}-\d{4}-\d{4}" maxlength="14" placeholder="0000-0000-0000" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Father's Occupation</label>
+            <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Annual Income</label>
+            <input type="number" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">
+              Mother's Name <span class="text-red-500">*</span>
+            </label>
+            <input required type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">
+              Mother's Aadhar No <span class="text-red-500">*</span>
+            </label>
+            <input required type="text" pattern="\d{4}-\d{4}-\d{4}" maxlength="14" placeholder="0000-0000-0000" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Mother's Occupation</label>
+            <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+        </div>
+        <div class="mb-6">
+          <label class="block font-medium mb-2 text-gray-800">Guardian Name</label>
+          <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+        </div>
+        <div class="mb-8">
+          <label class="block font-medium mb-2 text-gray-800">Guardian Contact No</label>
+          <input type="tel" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+        </div>
+        <div class="flex justify-between mt-12">
+          <button type="button" disabled class="bg-gray-300 text-gray-600 px-8 py-3 rounded-lg text-lg font-semibold shadow">
+            Previous
+          </button>
+          <button type="button" id="nextBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-bold shadow transition">
+            Next Page
+          </button>
+        </div>
+      </div>
+
+      <!-- PAGE 2 -->
+      <div id="page2" class="hidden">
+        <h2 class="text-2xl font-semibold mb-6 text-blue-700 border-b pb-2 flex items-center gap-2">
+          <span>👤</span> Personal Details
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Nationality <span class="text-red-500">*</span></label>
+            <input required type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400 outline-none"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Caste</label>
+            <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Scheduled Category</label>
+            <select class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400 outline-none">
+              <option value="">Select</option>
+              <option>General</option>
+              <option>SC</option>
+              <option>ST</option>
+              <option>OBC</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Number of Dependents</label>
+            <input type="number" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Mother Tongue</label>
+            <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+        </div>
+        <h2 class="text-2xl font-semibold mb-6 mt-10 text-blue-700 border-b pb-2">Disability Information</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Disability Status</label>
+            <div class="flex gap-10 mt-2 text-lg">
+              <label class="inline-flex items-center text-gray-700">
+                <input type="radio" name="disability" value="No" required class="mr-2 accent-blue-600"/>No
+              </label>
+              <label class="inline-flex items-center text-gray-700">
+                <input type="radio" name="disability" value="Yes" class="mr-2 accent-blue-600"/>Yes
+              </label>
+            </div>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Disability Type</label>
+            <select class="w-full border px-4 py-3 text-lg rounded-lg bg-blue-100 focus:ring-2 focus:ring-blue-400 outline-none" disabled>
+              <option value="">Select</option>
+              <option>Physical</option>
+              <option>Visual</option>
+              <option>Hearing</option>
+              <option>Mental</option>
+            </select>
+          </div>
+        </div>
+        <h2 class="text-2xl font-semibold mb-6 mt-10 text-blue-700 border-b pb-2">🏫 Previous School Information</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">School Name</label>
+            <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Contact Number</label>
+            <input type="tel" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Village/Area</label>
+            <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">Taluk</label>
+            <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">District</label>
+            <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+          <div>
+            <label class="block font-medium mb-2 text-gray-800">PIN Code</label>
+            <input type="text" maxlength="6" pattern="\d{6}" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400"/>
+          </div>
+        </div>
+        <h2 class="text-2xl font-semibold mb-6 mt-10 text-blue-700 border-b pb-2">📍 Address Information</h2>
+        <label class="block font-medium mb-2 text-gray-800">Parent's Address</label>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <input required type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400" placeholder="Village/Area"/>
+          <input required type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400" placeholder="Taluk"/>
+          <input required type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400" placeholder="District"/>
+          <input required type="text" maxlength="6" pattern="\d{6}" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400" placeholder="PIN Code"/>
+          <input required type="tel" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400" placeholder="Contact Number"/>
+        </div>
+        <label class="block font-medium mb-2 text-gray-800">Guardian's Address</label>
+        <div class="flex items-center mb-4">
+          <input type="checkbox" id="sameAsParent" class="mr-2 accent-blue-600"/>
+          <label for="sameAsParent" class="text-gray-700">Same as Parent's Address</label>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400" placeholder="Village/Area"/>
+          <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400" placeholder="Taluk"/>
+          <input type="text" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400" placeholder="District"/>
+          <input type="text" maxlength="6" pattern="\d{6}" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400" placeholder="PIN Code"/>
+          <input type="tel" class="w-full border px-4 py-3 text-lg rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-400" placeholder="Contact Number"/>
+        </div>
+        <div class="flex justify-between mt-12">
+          <button type="button" id="prevBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-bold shadow transition">
+            Previous Page
+          </button>
+          <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg text-lg font-bold shadow transition">
+            Submit Registration
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+ 
+  <script src="./js/ main.js"></script>
+</body>
+</html>
