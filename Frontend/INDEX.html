@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>📚 BrightFuture — Student Registration</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<h2>📚 BrightFuture — Student Registration</h2>
+
+<form id="studentForm" novalidate>
+    <!-- 📅 Admission -->
+    <fieldset>
+        <legend>📅 Admission Information</legend>
+
+        <label>Date of Admission *</label>
+        <input type="date" id="dateOfAdmission" name="admission.dateOfAdmission" required />
+
+        <label>Class *</label>
+        <input type="text" id="className" name="admission.className" required data-validate="alnum" />
+
+
+
+        <small class="error-msg">Only letters and numbers</small>
+
+        <label>Gender *</label>
+        <select id="gender" name="admission.gender" required>
+            <option value="">Select</option>
+            <option value="Boy">Boy</option>
+            <option value="Girl">Girl</option>
+        </select>
+
+        <label>Date of Birth *</label>
+        <input type="date" id="dob" name="admission.dob" required />
+
+        <label>Age</label>
+        <input type="number" id="age" name="admission.age" min="3" max="20" readonly />
+
+        <label>Place of Birth</label>
+        <input type="text" id="placeOfBirth" name="admission.placeOfBirth" data-validate="alpha" />
+        <small class="error-msg">Only letters allowed</small>
+
+        <label>Residential *</label>
+        <select id="residential" name="admission.residential" required>
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <label>Remark</label>
+        <input type="text" id="remark" name="admission.remark" />
+
+        <label>SATS No</label>
+        <input type="text" id="satsNo" name="admission.satsNo" data-validate="digits9" />
+        <small class="error-msg">Enter exactly 9 digits</small>
+
+        <label>PEN No</label>
+        <input type="text" id="penNo" name="admission.penNo" data-validate="digits6to10" />
+        <small class="error-msg">Enter 6–10 digits</small>
+
+        <label>UDISE TC Status</label>
+        <input type="text" id="udiseTcStatus" name="admission.udiseTcStatus" />
+
+        <label>TC In Date</label>
+        <input type="date" id="tcInDate" name="admission.tcInDate" />
+
+        <label>TC Received</label>
+        <input type="text" id="tcReceived" name="admission.tcReceived" />
+
+        <label>School Place</label>
+        <input type="text" id="schoolPlace" name="admission.schoolPlace" data-validate="alpha" />
+        <small class="error-msg">Only letters allowed</small>
+    </fieldset>
+
+    <!-- 🆔 Aadhaar -->
+    <fieldset>
+        <legend>🆔 Student Aadhaar Information</legend>
+
+        <label>Student Name *</label>
+        <input type="text" id="studentName" name="aadharInfo.studentName" required data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <label>Student Aadhaar No *</label>
+        <input type="text" id="studentAadharNo" name="aadharInfo.studentAadharNo" required data-format="aadhar" placeholder="XXXX-XXXX-XXXX" />
+        <small class="error-msg">Enter Aadhaar as XXXX-XXXX-XXXX</small>
+    </fieldset>
+
+    <!-- 👨‍👩‍👧‍👦 Parents -->
+    <fieldset>
+        <legend>👨‍👩‍👧‍👦 Parents Information</legend>
+
+        <h4>👨 Father</h4>
+        <label>Name *</label>
+        <input type="text" id="fatherName" name="parents.father.name" required data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <label>Aadhaar No *</label>
+        <input type="text" id="fatherAadhar" name="parents.father.aadharNo" required data-format="aadhar" placeholder="XXXX-XXXX-XXXX" />
+        <small class="error-msg">Enter Aadhaar as XXXX-XXXX-XXXX</small>
+
+        <label>Occupation</label>
+        <input type="text" id="fatherOccupation" name="parents.father.occupation" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <label>Annual Income</label>
+        <input type="number" id="fatherAnnualIncome" name="parents.father.annualIncome" min="0"/>
+
+        <h4>👩 Mother</h4>
+        <label>Name *</label>
+        <input type="text" id="motherName" name="parents.mother.name" required data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <label>Aadhaar No *</label>
+        <input type="text" id="motherAadhar" name="parents.mother.aadharNo" required data-format="aadhar" placeholder="XXXX-XXXX-XXXX" />
+        <small class="error-msg">Enter Aadhaar as XXXX-XXXX-XXXX</small>
+
+        <label>Occupation</label>
+        <input type="text" id="motherOccupation" name="parents.mother.occupation" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <h4>🛡 Guardian</h4>
+        <label>Name</label>
+        <input type="text" id="guardianName" name="parents.guardian.name" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <label>Contact No</label>
+        <input type="text" id="guardianContact" name="parents.guardian.contactNo" data-format="phone" placeholder="XXX-XXX-XXXX"/>
+        <small class="error-msg">Enter phone as XXX-XXX-XXXX</small>
+    </fieldset>
+
+    <!-- 🌍 Personal Details -->
+    <fieldset>
+        <legend>🌍 Personal Details</legend>
+
+        <label>Nationality</label>
+        <input type="text" id="nationality" name="personalDetails.nationality" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <label>Caste</label>
+        <input type="text" id="caste" name="personalDetails.caste" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <label>Scheduled Category</label>
+        <input type="text" id="scheduledCategory" name="personalDetails.scheduledCategory" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <label>No. of Dependents</label>
+        <input type="number" id="noOfDependents" name="personalDetails.noOfDependents" min="0" max="20"/>
+
+        <label>Mother Tongue</label>
+        <input type="text" id="motherTongue" name="personalDetails.motherTongue" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <label>Disability</label>
+        <select id="disabilityStatus" name="personalDetails.disability.status">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
+
+        <div id="disabilityExtra" class="hidden">
+            <label>Disability Type *</label>
+            <input type="text" id="disabilityType" name="personalDetails.disability.type" data-validate="alpha" />
+            <small class="error-msg">Only letters allowed</small>
+        </div>
+    </fieldset>
+
+    <!-- 🏠 Address -->
+    <fieldset>
+        <legend>🏠 Address</legend>
+
+        <h4>Parents Address</h4>
+        <input type="text" id="parentVillage" name="address.parentsAddress.village" placeholder="Village" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <input type="text" id="parentTaluk" name="address.parentsAddress.taluk" placeholder="Taluk" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <input type="text" id="parentDistrict" name="address.parentsAddress.district" placeholder="District" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <input type="text" id="parentPin" name="address.parentsAddress.pin" placeholder="PIN Code" data-validate="pin"/>
+        <small class="error-msg">Enter 6 digits</small>
+
+        <input type="text" id="parentContact" name="address.parentsAddress.contactNo" placeholder="Contact No" data-format="phone"/>
+        <small class="error-msg">Enter phone as XXX-XXX-XXXX</small>
+
+        <h4>Guardian Address</h4>
+        <input type="text" id="guardianVillage" name="address.guardianAddress.village" placeholder="Village" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <input type="text" id="guardianTaluk" name="address.guardianAddress.taluk" placeholder="Taluk" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <input type="text" id="guardianDistrict" name="address.guardianAddress.district" placeholder="District" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <input type="text" id="guardianPin" name="address.guardianAddress.pin" placeholder="PIN Code" data-validate="pin"/>
+        <small class="error-msg">Enter 6 digits</small>
+
+        <input type="text" id="guardianAddressContact" name="address.guardianAddress.contactNo" placeholder="Contact No" data-format="phone"/>
+        <small class="error-msg">Enter phone as XXX-XXX-XXXX</small>
+    </fieldset>
+
+    <!-- 🏫 Previous School -->
+    <fieldset>
+        <legend>🏫 Previous School</legend>
+
+        <label>School Name</label>
+        <input type="text" id="prevSchoolName" name="previousSchool.schoolName" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <h4>School Address</h4>
+        <input type="text" id="prevSchoolVillage" name="previousSchool.address.village" placeholder="Village" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <input type="text" id="prevSchoolTaluk" name="previousSchool.address.taluk" placeholder="Taluk" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <input type="text" id="prevSchoolDistrict" name="previousSchool.address.district" placeholder="District" data-validate="alpha"/>
+        <small class="error-msg">Only letters allowed</small>
+
+        <input type="text" id="prevSchoolPin" name="previousSchool.address.pin" placeholder="PIN Code" data-validate="pin"/>
+        <small class="error-msg">Enter 6 digits</small>
+
+        <input type="text" id="prevSchoolContact" name="previousSchool.address.contactNo" placeholder="Contact No" data-format="phone"/>
+        <small class="error-msg">Enter phone as XXX-XXX-XXXX</small>
+    </fieldset>
+
+    <div class="buttons">
+        <button id="submitBtn" type="submit" disabled>✅ Submit</button>
+    </div>
+</form>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="script.js"></script>
+<script>
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.remove("hidden");
+      setTimeout(() => toast.classList.add("hidden"), 3000);
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("studentForm");
+      if (form) form.addEventListener("submit", () => showToast("✅ Form submitted!"));
+    });
+</script>
+</body>
+</html>

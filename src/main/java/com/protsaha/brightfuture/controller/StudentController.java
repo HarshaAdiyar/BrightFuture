@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/student")
+@RequestMapping("/api/students")
+@CrossOrigin(origins = "http://localhost:63342")  // ✅ allow frontend running in browser
 @Tag(name = "Student Management", description = "Endpoints for managing students")
 public class StudentController {
 
@@ -37,7 +37,7 @@ public class StudentController {
     @Operation(summary = "Add a New Student", description = "Add a new student to the database.")
     public Student addStudent(@RequestBody Student student) {
         System.out.println("addStudent");
-        System.out.println("print Student  "+student.toString());
+        System.out.println("print Student  " + student.toString());
         return studentService.addStudent(student);
     }
 

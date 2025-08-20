@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Admission {
    private String dateOfAdmission;
-   @JsonProperty("class")
+
    private String className;
    private String gender;
    private String dob;

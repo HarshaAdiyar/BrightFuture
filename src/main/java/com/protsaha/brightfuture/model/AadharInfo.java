@@ -6,5 +6,5 @@ import lombok.Data;
 public class AadharInfo {
     private String studentName;
     private String studentAadharNo;
-    private String studentRdNo;
+
 }

@@ -1,0 +1,30 @@
+:root {
+  --primary:#0077cc; --primary-dark:#005fa3; --bg:#f7f9fc; --text:#333; --border:#cfd8e3; --ok:#21a179; --err:#d64545;
+}
+
+*{box-sizing:border-box}
+body{font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);padding:24px}
+h2{text-align:center;color:var(--primary-dark);margin-bottom:18px}
+
+form{background:#fff;max-width:960px;margin:0 auto;padding:24px;border-radius:10px;box-shadow:0 8px 24px rgba(16,24,40,.06)}
+fieldset{border:1px solid var(--border);border-radius:8px;margin-bottom:20px;padding:16px}
+legend{font-weight:700;color:var(--primary-dark);padding:0 8px}
+h4{margin:10px 0 8px 0;color:#334155}
+
+label{display:block;font-weight:600;margin:10px 0 4px}
+input,select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-size:14px;transition:border .15s, box-shadow .15s}
+input:focus,select:focus{border-color:var(--primary);outline:0;box-shadow:0 0 0 3px rgba(0,119,204,.12)}
+input.valid{border-color:var(--ok)}
+input.invalid{border-color:var(--err)}
+small.error-msg{display:none;color:var(--err);font-size:12px;margin-top:4px}
+small.error-msg.show{display:block}
+
+.buttons{text-align:right;margin-top:8px}
+button{background:var(--primary);color:#fff;border:none;border-radius:8px;padding:10px 16px;font-weight:600;cursor:pointer}
+button:disabled{background:#94a3b8;cursor:not-allowed}
+button:hover:not(:disabled){background:var(--primary-dark)}
+
+.hidden{display:none}
+
+/* Toast message */
+.toast{position:fixed;right:24px;bottom:24px;background:#111827;color:#fff;padding:12px 16px;border-radius:8px;box-shadow:0 10px 20px rgba(0,0,0,.2);opacity:.95}
