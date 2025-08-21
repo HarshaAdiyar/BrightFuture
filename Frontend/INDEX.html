@@ -32,7 +32,9 @@
         <input type="date" id="dob" name="admission.dob" required />
 
         <label>Age</label>
-        <input type="number" id="age" name="admission.age" min="3" max="20" readonly />
+        <input type="number" id="age" name="admission.age" min="3" max="25" readonly placeholder="Auto-calculated"  />
+
+
 
         <label>Place of Birth</label>
         <input type="text" id="placeOfBirth" name="admission.placeOfBirth"
@@ -50,15 +52,14 @@
 
         <label>SATS No</label>
         <input type="text" id="satsNo" name="admission.satsNo"
-               pattern="^\d{9}$"
-               title="Enter exactly 9 digits"
-               placeholder="Enter 9 digit SATS No" />
+               pattern="^\d{9}$" title="Enter exactly 9 digits"
+               placeholder="Enter 6–10 digit PIN" />
 
         <label>PIN No</label>
         <input type="text" id="penNo" name="admission.penNo"
-               pattern="^\d{6}$"
-               title="Enter 6 digits"
-               placeholder="Enter 6 digit PIN" />
+               pattern="^\d{6,10}$"
+               title="Enter 6–10 digits"
+               placeholder="Enter 6–10 digit PIN" />
 
         <label>UDISE TC Status</label>
         <input type="text" id="udiseTcStatus" name="admission.udiseTcStatus" />

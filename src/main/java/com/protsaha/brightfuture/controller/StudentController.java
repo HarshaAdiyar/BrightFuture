@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/students")
-@CrossOrigin(origins = "http://localhost:63342")  // ✅ allow frontend running in browser
+@CrossOrigin(origins = "*")
 @Tag(name = "Student Management", description = "Endpoints for managing students")
 public class StudentController {
 
