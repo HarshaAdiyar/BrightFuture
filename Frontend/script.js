@@ -1,49 +1,16 @@
-// ===== Validation Rules =====
-const rules = {
-  alpha: /^[A-Za-z\s]+$/,
-  alnum: /^[A-Za-z0-9\s]+$/,
-  aadhar: /^\d{4}-\d{4}-\d{4}$/,
-  phone: /^\d{3}-\d{3}-\d{4}$/,
-  pin: /^\d{6}$/,
-  digits9: /^\d{9}$/,
-  digits6to10: /^\d{6,10}$/
-};
-
-function setValidity(input, valid) {
-  const err = input.nextElementSibling && input.nextElementSibling.classList.contains("error-msg")
-      ? input.nextElementSibling : null;
-  input.classList.toggle("valid", valid);
-  input.classList.toggle("invalid", !valid);
-  if (err) err.classList.toggle("show", !valid);
-}
-
-function validateInput(input) {
-  const type = input.dataset.validate;
-  if (!type) {
-    const ok = !input.required || !!input.value.trim();
-    setValidity(input, ok);
-    return ok;
+// ===== Age auto-calc =====
+function calculateAge(dob) {
+  let birthDate = new Date(dob);
+  let age = new Date().getFullYear() - birthDate.getFullYear();
+  let m = new Date().getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && new Date().getDate() < birthDate.getDate())) {
+    age--;
   }
-  let ok = true;
-  const val = input.value.trim();
-  switch (type) {
-    case "alpha": ok = !val || rules.alpha.test(val); break;
-    case "alnum": ok = !val || rules.alnum.test(val); break;
-    case "pin": ok = !val || rules.pin.test(val); break;
-    case "digits9": ok = !val || rules.digits9.test(val); break;
-    case "digits6to10": ok = !val || rules.digits6to10.test(val); break;
-    default: ok = true;
-  }
-  if (input.required) ok = ok && !!val;
-  setValidity(input, ok);
-  return ok;
+  return age;
 }
-
 function formatAadhaar(input) {
   let val = input.value.replace(/\D/g, "").slice(0, 12);
   input.value = val.replace(/(\d{4})(?=\d)/g, "$1-");
-  const ok = rules.aadhar.test(input.value) || (!input.required && input.value === "");
-  setValidity(input, ok);
 }
 
 function formatPhone(input) {
@@ -51,19 +18,14 @@ function formatPhone(input) {
   if (v.length > 6) input.value = `${v.slice(0,3)}-${v.slice(3,6)}-${v.slice(6)}`;
   else if (v.length > 3) input.value = `${v.slice(0,3)}-${v.slice(3)}`;
   else input.value = v;
-  const ok = rules.phone.test(input.value) || (!input.required && input.value === "");
-  setValidity(input, ok);
 }
 
-// ===== Age auto-calc =====
-function calculateAge(dob) {
-  let birthDate = new Date(dob);
-  let age = new Date().getFullYear() - birthDate.getFullYear();
-  let m = new Date().getMonth() - birthDate.getMonth();
-  if (m < 0 || (m === 0 && new Date().getDate() < birthDate.getDate())) {
-      age--;
-  }
-  return age;
+// ===== Enable/Disable Submit =====
+function toggleSubmit() {
+  const form = document.getElementById("studentForm");
+  const btn = document.getElementById("submitBtn");
+  if (!form || !btn) return;
+  btn.disabled = !form.checkValidity();
 }
 
 // ===== DOM Ready =====
@@ -83,19 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  document.querySelectorAll("input[data-validate]").forEach(inp => {
-    validateInput(inp);
-    inp.addEventListener("input", () => { validateInput(inp); toggleSubmit(); });
-    inp.addEventListener("blur", () => validateInput(inp));
-  });
-
+  // Auto-format Aadhaar & Phone
   document.querySelectorAll("input[data-format='aadhar']").forEach(inp => {
-    formatAadhaar(inp);
     inp.addEventListener("input", () => { formatAadhaar(inp); toggleSubmit(); });
   });
 
   document.querySelectorAll("input[data-format='phone']").forEach(inp => {
-    formatPhone(inp);
     inp.addEventListener("input", () => { formatPhone(inp); toggleSubmit(); });
   });
 
@@ -202,6 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("✅ Student saved:", saved);
         alert("✅ Submitted & saved successfully!");
         form.reset();
+        toggleSubmit();
       } catch (err) {
         console.error("❌ Submit failed:", err);
         alert("❌ Submit failed. See console for details.");
@@ -209,14 +165,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
-
-function toggleSubmit() {
-  const form = document.getElementById("studentForm");
-  const btn = document.getElementById("submitBtn");
-  if (!form || !btn) return;
-  let allOk = true;
-  form.querySelectorAll("input, select").forEach(inp => {
-    if (!validateInput(inp)) allOk = false;
-  });
-  btn.disabled = !allOk;
-}
