@@ -7,168 +7,168 @@
 </head>
 <body>
 <header>
-  <form id="studentform">
-    <div id="heading">
-        <h3>WELCOME TO RURAL PUBLIC SCHOOL</h3>
-    </div>
-
-    <div class="main">
-        <div class="top">
-            <h4>Student Registration Form</h4>
-            <P>please fill in all the required information</P>
-            <p>Page 1 of 2</p>
+    <form id="studentform">
+        <div id="heading">
+            <h3>WELCOME TO RURAL PUBLIC SCHOOL</h3>
         </div>
-    <div class="container">
-        <h3>Admission Information</h3>
-        <div class="admission">
-            <div class="studentId">
-               <label for="studentId">Student ID *</label>
-               <input type="text" id="studentId" name="studentId" required> <!--here in backend it stores id like studentId:12345-->
-            </div> <!--required means manditory information must enter.-->
-            <div class="DOA">
-                <label for="DOA">Date of Admission *</label>
-                <input type="date" id="DOA" name="DOA">
+
+        <div class="main">
+            <div class="top">
+                <h4>Student Registration Form</h4>
+                <P>please fill in all the required information</P>
+                <p>Page 1 of 2</p>
             </div>
-            <div class="class">
-                <label for="class">Class *</label>
-                <select id="class" name="class" required>
-                    <option value="">Select Class</option>
-                    <option value="1">Class 1</option>
-                    <option value="1">Class 2</option>
-                    <option value="1">Class 3</option>
-                    <option value="1">Class 4</option>
-                    <option value="1">Class 5</option>
-                    <option value="1">Class 6</option>
-                    <option value="1">Class 7</option>
-                    <option value="1">Class 8</option>
-                    <option value="1">Class 9</option>
-                    <option value="1">Class 10</option>
-                </select>
-            </div>
-            <div class="Gender">
-                    <label>Gender *</label>
-                    <div class="options">
-                        <label for="boy">Boy
-                            <input type="radio" id="boy" name="gender" value="Boy" required>
-                        </label>
-                        <label for="girl">Girl
-                            <input type="radio" id="girl" name="gender" value="Girl" required>
-                        </label>
+            <div class="container">
+                <h3>Admission Information</h3>
+                <div class="admission">
+                    <div class="studentId">
+                        <label for="studentId">Student ID *</label>
+                        <input type="text" id="studentId" name="studentId" required> <!--here in backend it stores id like studentId:12345-->
+                    </div> <!--required means manditory information must enter.-->
+                    <div class="DOA">
+                        <label for="DOA">Date of Admission *</label>
+                        <input type="date" id="DOA" name="dateofAdmission">
                     </div>
-            </div>
-            <div class="DOB">
-                <label for="DOB">Date of Birth *</label>
-                <input type="date" id="DOB" name="DOB">
-            </div>
-            <div class="Age">
-                <label for="age">Age</label>
-                <input type="text" id="age" name="age">
-            </div>
-            <div class="birthPlace">
-                <label for="birthPlace">Place of Birth</label>
-                <input type="text" id="birthPlace" name="birthPlace">
-            </div>
-            <div class="residential">
-                   <label>Residential *</label>
-                    <div class="options">
-                        <label>
-                            <input type="radio" name="residential" value="yes" required>
-                            Yes
-                        </label>
-                        <label>
-                            <input type="radio" name="residential" value="no" required>
-                            No
-                        </label>
+                    <div class="class">
+                        <label for="class">Class *</label>
+                        <select id="class" name="className" required>
+                            <option value="">Select Class</option>
+                            <option value="1">Class 1</option>
+                            <option value="1">Class 2</option>
+                            <option value="1">Class 3</option>
+                            <option value="1">Class 4</option>
+                            <option value="1">Class 5</option>
+                            <option value="1">Class 6</option>
+                            <option value="1">Class 7</option>
+                            <option value="1">Class 8</option>
+                            <option value="1">Class 9</option>
+                            <option value="1">Class 10</option>
+                        </select>
+                    </div>
+                    <div class="Gender">
+                        <label>Gender *</label>
+                        <div class="options">
+                            <label for="boy">Boy
+                                <input type="radio" id="boy" name="gender" value="Boy" required>
+                            </label>
+                            <label for="girl">Girl
+                                <input type="radio" id="girl" name="gender" value="Girl" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="DOB">
+                        <label for="DOB">Date of Birth *</label>
+                        <input type="date" id="DOB" name="dob">
+                    </div>
+                    <div class="Age">
+                        <label for="age">Age</label>
+                        <input type="text" id="age" name="age">
+                    </div>
+                    <div class="birthPlace">
+                        <label for="birthPlace">Place of Birth</label>
+                        <input type="text" id="birthPlace" name="placeofBirth">
+                    </div>
+                    <div class="residential">
+                        <label>Residential *</label>
+                        <div class="options">
+                            <label>
+                                <input type="radio" name="residential" value="yes" required>
+                                Yes
+                            </label>
+                            <label>
+                                <input type="radio" name="residential" value="no" required>
+                                No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="schoolPlace">
+                        <label for="schoolPlace">School Place</label>
+                        <input type="text" id="schoolPlace" name="schoolPlace">
+                    </div>
+                    <div class="sats">
+                        <label for="sats">SATA No *</label>
+                        <input type="text" id="sats" name="satsNo">
+                    </div>
+                    <div class="pen">
+                        <label for="pen">PEN No*</label>
+                        <input type="text" id="pen" name="penNo">
+                    </div>
+                    <div class="tc">
+                        <label for="tc">UDISE TC Status *</label>
+                        <input type="text" id="tc" name="udiseTcStatus">
+                    </div>
+                    <div class="tcIndate">
+                        <label for="tcIndate">TC In Date*</label>
+                        <input type="date" id="tcIndate" name="tcInDate">
+                    </div>
+                    <div class="tcReciv">
+                        <label for="tcReciv">TC Received *</label>
+                        <input type="text" id="tcReciv" name="tcReceived">
+                    </div>
+                    <div class="remark">
+                        <label for="remark">Remark</label>
+                        <input type="text" id="remark" name="remark">
+                    </div>
                 </div>
             </div>
-            <div class="schoolPlace">
-                <label for="schoolPlace">School Place</label>
-                <input type="text" id="schoolPlace" name="schoolPlace">
-            </div>
-            <div class="sats">
-                <label for="sats">SATA No *</label>
-                <input type="text" id="sats" name="sats">
-            </div>
-            <div class="pen">
-                <label for="pen">PEN No*</label>
-                <input type="text" id="pen" name="pen">
-            </div>
-            <div class="tc">
-                <label for="tc">UDISE TC Status *</label>
-                <input type="text" id="tc" name="tc">
-            </div>
-            <div class="tcIndate">
-                <label for="tcIndate">TC In Date*</label>
-                <input type="date" id="tcIndate" name="tcIndate">
-            </div>
-            <div class="tcReciv">
-                <label for="tcReciv">TC Received *</label>
-                <input type="text" id="tcReciv" name="tcReciv">
-            </div>
-            <div class="remark">
-                <label for="remark">Remark</label>
-                <input type="text" id="remark" name="remark">
-            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="container">
-        <h3>Student Aadhar Information</h3>
-      <div class="aadhar">
-        <div class="f_name">
-            <label for="f_name">Student Name *</label>
-            <input type="text" id="f_name" name="f_name">
-        </div>
-        <div class="aadhar_no">
-            <label>Student Aadhar No *</label>
-            <input type="text" name="aadhar_no">
-        </div>
-        <div class="rd">
-            <label for="rd">Student RD No *</label>
-            <input type="text" id="rd" name="rd_no">
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-        <h4>Fathers's Details</h4>
-        <div class="parent">
-        <div class="father_name">
-            <label for="father_name">Father Name *</label>
-            <input type="text" id="father_name" name="father_name">
-        </div>
-        <div class="aadhar_no">
-            <label>Father Aadhar No *</label>
-            <input type="text" name="father_aadhar_no">
-        </div>
-        <div class="f_occupation">
-            <label>Father's Occupation</label>
-            <input type="text"  name="f_occupation">
-        </div>
-        <p>Income <input type="text" name="income"></p>
-
-      </div>
-        <h4>Mother's Details</h4>
-          <div class="parent">
-            <div class="mother_name">
-              <label for="mother_name">Mother Name *</label>
-              <input type="text" id="mother_name" name="mother_name">
+        <div class="container">
+            <h3>Student Aadhar Information</h3>
+            <div class="aadhar">
+                <div class="f_name">
+                    <label for="f_name">Student Name *</label>
+                    <input type="text" id="f_name" name="studentName">
+                </div>
+                <div class="aadhar_no">
+                    <label>Student Aadhar No *</label>
+                    <input type="text" name="studentAadharNo">
+                </div>
+                <div class="rd">
+                    <label for="rd">Student RD No *</label>
+                    <input type="text" id="rd" name="studentRdNo">
+                </div>
             </div>
-              <div class="aadhar_no">
-               <label>Father Aadhar No *</label>
-               <input type="text" name="mother_aadhar_no">
-              </div>
-              <div class="f_occupation">
-               <label>Mother's Occupation</label>
-                <input type="text"  name="m_occupation">
-              </div>
-           </div>
-    </div>
-    <div class="next">
-        <button type="submit" id="next">Next →</button>
-    </div>
-  </form>
+        </div>
+
+        <div class="container">
+            <h4>Fathers's Details</h4>
+            <div class="parent">
+                <div class="father_name">
+                    <label for="father_name">Father Name *</label>
+                    <input type="text" id="father_name" name="name">
+                </div>
+                <div class="aadhar_no">
+                    <label>Father Aadhar No *</label>
+                    <input type="text" name="aadharNo">
+                </div>
+                <div class="f_occupation">
+                    <label>Father's Occupation</label>
+                    <input type="text"  name="occupation">
+                </div>
+                <p>Income <input type="text" name="annualIncome"></p>
+
+            </div>
+            <h4>Mother's Details</h4>
+            <div class="parent">
+                <div class="mother_name">
+                    <label for="mother_name">Mother Name *</label>
+                    <input type="text" id="mother_name" name="name">
+                </div>
+                <div class="aadhar_no">
+                    <label>Mother Aadhar No *</label>
+                    <input type="text" name="aadharNo">
+                </div>
+                <div class="f_occupation">
+                    <label>Mother's Occupation</label>
+                    <input type="text"  name="occupation">
+                </div>
+            </div>
+        </div>
+        <div class="next">
+            <button type="submit" id="next">Next →</button>
+        </div>
+    </form>
 </header>
 <script src="page1.js"></script>
 </body>

@@ -7,154 +7,154 @@
 </head>
 <body>
 <form id="page2Form">
-<header>
-    <div class="main">
-        <div class="top">
-            <h4>Student Registration Form</h4>
-            <p>Complete the remaining information</p>
-            <p>Page 2 of 2</p>
-        </div>
-     <div class="container">
-         <h3>Personal Details</h3>
-        <div class="personal">
-            <div class="nationality">
-                <label for="nationality">Nationality *</label>
-                <input type="text" id="nationality" name="nationality" required>
+    <header>
+        <div class="main">
+            <div class="top">
+                <h4>Student Registration Form</h4>
+                <p>Complete the remaining information</p>
+                <p>Page 2 of 2</p>
             </div>
-            <div class="caste">
-                <label for="caste">Caste</label>
-                <input type="text" id="caste" name="caste">
-            </div>
-            <div class="scheduled">
-                <label for="scheduled">Scheduled Category</label>
-                <select id="scheduled" name="scheduled">
-                    <option value="">Select</option>
-                    <option value="sc">SC</option>
-                    <option value="st">ST</option>
-                    <option value="obc">OBC</option>
-                    <option value="gen">General</option>
-                </select>
-            </div>
-            <div class="dependents">
-                <label for="dependents">Number of Dependents</label>
-                <input type="number" id="dependents" name="dependents">
-            </div>
-            <div class="motherTongue">
-                <label for="motherTongue">Mother Tongue</label>
-                <input type="text" id="motherTongue" name="motherTongue">
-            </div>
-            <div class="disability">
-                <label>Disability Status</label>
-                <div class="options">
-                    <label>
-                        <input type="radio" name="disability_status" value="no"> No
-                    </label>
-                    <label>
-                        <input type="radio" name="disability_status" value="yes"> Yes
-                    </label>
+            <div class="container">
+                <h3>Personal Details</h3>
+                <div class="personal">
+                    <div class="nationality">
+                        <label for="nationality">Nationality *</label>
+                        <input type="text" id="nationality" name="nationality" required>
+                    </div>
+                    <div class="caste">
+                        <label for="caste">Caste</label>
+                        <input type="text" id="caste" name="caste">
+                    </div>
+                    <div class="scheduled">
+                        <label for="scheduled">Scheduled Category</label>
+                        <select id="scheduled" name="scheduledCategory">
+                            <option value="">Select</option>
+                            <option value="sc">SC</option>
+                            <option value="st">ST</option>
+                            <option value="obc">OBC</option>
+                            <option value="gen">General</option>
+                        </select>
+                    </div>
+                    <div class="dependents">
+                        <label for="dependents">Number of Dependents</label>
+                        <input type="number" id="dependents" name="noofDependents">
+                    </div>
+                    <div class="motherTongue">
+                        <label for="motherTongue">Mother Tongue</label>
+                        <input type="text" id="motherTongue" name="motherTongue">
+                    </div>
+                    <div class="disability">
+                        <label>Disability Status</label>
+                        <div class="options">
+                            <label>
+                                <input type="radio" name="status" value="no"> No
+                            </label>
+                            <label>
+                                <input type="radio" name="status" value="yes"> Yes
+                            </label>
+                        </div>
+                    </div>
+                    <div class="disabilityType">
+                        <label for="disabilityType">Disability Type</label>
+                        <select id="disabilityType" name="type" disabled>
+                            <option value="">Select</option>
+                            <option value="visual">Visual</option>
+                            <option value="hearing">Hearing</option>
+                            <option value="physical">Physical</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div class="disabilityType">
-                <label for="disabilityType">Disability Type</label>
-                <select id="disabilityType" name="disabilityType" disabled>
-                    <option value="">Select</option>
-                    <option value="visual">Visual</option>
-                    <option value="hearing">Hearing</option>
-                    <option value="physical">Physical</option>
-                    <option value="other">Other</option>
-                </select>
+            <div class="container">
+                <h3>Previous School Information</h3>
+                <div class="previousSchool">
+                    <div class="schoolName">
+                        <label for="schoolName">School Name</label>
+                        <input type="text" id="schoolName" name="schoolName">
+                    </div>
+                    <div class="schoolContact">
+                        <label for="schoolContact">Contact Number</label>
+                        <input type="tel" id="schoolContact" name="schoolContact">
+                    </div>
+                    <div class="schoolVillage">
+                        <label for="schoolVillage">Village/Area</label>
+                        <input type="text" id="schoolVillage" name="schoolVillage">
+                    </div>
+                    <div class="schoolTaluk">
+                        <label for="schoolTaluk">Taluk</label>
+                        <input type="text" id="schoolTaluk" name="schoolTaluk">
+                    </div>
+                    <div class="schoolDistrict">
+                        <label for="schoolDistrict">District</label>
+                        <input type="text" id="schoolDistrict" name="schoolDistrict">
+                    </div>
+                    <div class="schoolPin">
+                        <label for="schoolPin">PIN Code</label>
+                        <input type="text" id="schoolPin" name="schoolPin" maxlength="6">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <h3>Address Information</h3>
+                <div class="address">
+                    <div class="last">
+                        <h4>Parent's Address</h4>
+                        <div class="parentVillage">
+                            <label for="parentVillage">Village/Area *</label>
+                            <input type="text" id="parentVillage" name="village" required>
+                        </div>
+                        <div class="parentTaluk">
+                            <label for="parentTaluk">Taluk *</label>
+                            <input type="text" id="parentTaluk" name="taluk" required>
+                        </div>
+                        <div class="parentDistrict">
+                            <label for="parentDistrict">District *</label>
+                            <input type="text" id="parentDistrict" name="district" required>
+                        </div>
+                        <div class="parentPin">
+                            <label for="parentPin">PIN Code *</label>
+                            <input type="text" id="parentPin" name="pin" maxlength="6" required>
+                        </div>
+                        <div class="parentContact">
+                            <label for="parentContact">Contact Number *</label>
+                            <input type="tel" id="parentContact" name="contactNo" required>
+                        </div>
+                    </div>
+                    <div class="last">
+                        <h4>Guardian's Address</h4>
+                        <div class="guardianSame">
+                            <label><input type="checkbox" name="guardianSame">Same as Parent's Address</label>
+                        </div>
+                        <div class="guardianVillage">
+                            <label for="guardianVillage">Village/Area</label>
+                            <input type="text" id="guardianVillage" name="village">
+                        </div>
+                        <div class="guardianTaluk">
+                            <label for="guardianTaluk">Taluk</label>
+                            <input type="text" id="guardianTaluk" name="taluk">
+                        </div>
+                        <div class="guardianDistrict">
+                            <label for="guardianDistrict">District</label>
+                            <input type="text" id="guardianDistrict" name="district">
+                        </div>
+                        <div class="guardianPin">
+                            <label for="guardianPin">PIN Code</label>
+                            <input type="text" id="guardianPin" name="pin" maxlength="6">
+                        </div>
+                        <div class="guardianContact">
+                            <label for="guardianContact">Contact Number</label>
+                            <input type="tel" id="guardianContact" name="contactNo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submitSection">
+                <button type="button" class="prevBtn" onclick="location.href='page1.html'">← Previous Page</button>
+                <button type="submit" class="submitBtn">Submit Registration</button>
             </div>
         </div>
-     </div>
-     <div class="container">
-         <h3>Previous School Information</h3>
-        <div class="previousSchool">
-            <div class="schoolName">
-                <label for="schoolName">School Name</label>
-                <input type="text" id="schoolName" name="schoolName">
-            </div>
-            <div class="schoolContact">
-                <label for="schoolContact">Contact Number</label>
-                <input type="tel" id="schoolContact" name="schoolContact">
-            </div>
-            <div class="schoolVillage">
-                <label for="schoolVillage">Village/Area</label>
-                <input type="text" id="schoolVillage" name="schoolVillage">
-            </div>
-            <div class="schoolTaluk">
-                <label for="schoolTaluk">Taluk</label>
-                <input type="text" id="schoolTaluk" name="schoolTaluk">
-            </div>
-            <div class="schoolDistrict">
-                <label for="schoolDistrict">District</label>
-                <input type="text" id="schoolDistrict" name="schoolDistrict">
-            </div>
-            <div class="schoolPin">
-                <label for="schoolPin">PIN Code</label>
-                <input type="text" id="schoolPin" name="schoolPin" maxlength="6">
-            </div>
-        </div>
-     </div>
-     <div class="container">
-         <h3>Address Information</h3>
-        <div class="address">
-          <div class="last">
-            <h4>Parent's Address</h4>
-            <div class="parentVillage">
-                <label for="parentVillage">Village/Area *</label>
-                <input type="text" id="parentVillage" name="parentVillage" required>
-            </div>
-            <div class="parentTaluk">
-                <label for="parentTaluk">Taluk *</label>
-                <input type="text" id="parentTaluk" name="parentTaluk" required>
-            </div>
-            <div class="parentDistrict">
-                <label for="parentDistrict">District *</label>
-                <input type="text" id="parentDistrict" name="parentDistrict" required>
-            </div>
-            <div class="parentPin">
-                <label for="parentPin">PIN Code *</label>
-                <input type="text" id="parentPin" name="parentPin" maxlength="6" required>
-            </div>
-            <div class="parentContact">
-                <label for="parentContact">Contact Number *</label>
-                <input type="tel" id="parentContact" name="parentContact" required>
-            </div>
-          </div>
-          <div class="last">
-            <h4>Guardian's Address</h4>
-            <div class="guardianSame">
-                <label><input type="checkbox" name="guardianSame">Same as Parent's Address</label>
-            </div>
-            <div class="guardianVillage">
-                <label for="guardianVillage">Village/Area</label>
-                <input type="text" id="guardianVillage" name="guardianVillage">
-            </div>
-            <div class="guardianTaluk">
-                <label for="guardianTaluk">Taluk</label>
-                <input type="text" id="guardianTaluk" name="guardianTaluk">
-            </div>
-            <div class="guardianDistrict">
-                <label for="guardianDistrict">District</label>
-                <input type="text" id="guardianDistrict" name="guardianDistrict">
-            </div>
-            <div class="guardianPin">
-                <label for="guardianPin">PIN Code</label>
-                <input type="text" id="guardianPin" name="guardianPin" maxlength="6">
-            </div>
-            <div class="guardianContact">
-                <label for="guardianContact">Contact Number</label>
-                <input type="tel" id="guardianContact" name="guardianContact">
-            </div>
-          </div>
-        </div>
-     </div>
-        <div class="submitSection">
-            <button type="button" class="prevBtn" onclick="location.href='page1.html'">← Previous Page</button>
-            <button type="submit" class="submitBtn">Submit Registration</button>
-        </div>
-    </div>
-</header>
+    </header>
 </form>
 <script src="page2.js"></script>
 </body>
