@@ -23,7 +23,7 @@
                 <div class="admission">
                     <div class="studentId">
                         <label for="studentId">Student ID *</label>
-                        <input type="text" id="studentId" name="studentId" required> <!--here in backend it stores id like studentId:12345-->
+                        <input type="text" id="studentId" name="studentId" pattern="\d{6}" maxlength="6" required> <!--here in backend it stores id like studentId:12345-->
                     </div> <!--required means manditory information must enter.-->
                     <div class="DOA">
                         <label for="DOA">Date of Admission *</label>
@@ -34,15 +34,15 @@
                         <select id="class" name="className" required>
                             <option value="">Select Class</option>
                             <option value="1">Class 1</option>
-                            <option value="1">Class 2</option>
-                            <option value="1">Class 3</option>
-                            <option value="1">Class 4</option>
-                            <option value="1">Class 5</option>
-                            <option value="1">Class 6</option>
-                            <option value="1">Class 7</option>
-                            <option value="1">Class 8</option>
-                            <option value="1">Class 9</option>
-                            <option value="1">Class 10</option>
+                            <option value="2">Class 2</option>
+                            <option value="3">Class 3</option>
+                            <option value="4">Class 4</option>
+                            <option value="5">Class 5</option>
+                            <option value="6">Class 6</option>
+                            <option value="7">Class 7</option>
+                            <option value="8">Class 8</option>
+                            <option value="9">Class 9</option>
+                            <option value="10">Class 10</option>
                         </select>
                     </div>
                     <div class="Gender">
@@ -62,7 +62,7 @@
                     </div>
                     <div class="Age">
                         <label for="age">Age</label>
-                        <input type="text" id="age" name="age">
+                        <input type="text" id="age" name="age" maxlength="2">
                     </div>
                     <div class="birthPlace">
                         <label for="birthPlace">Place of Birth</label>
@@ -87,11 +87,11 @@
                     </div>
                     <div class="sats">
                         <label for="sats">SATA No *</label>
-                        <input type="text" id="sats" name="satsNo">
+                        <input type="text" id="sats" name="satsNo" pattern="\d{6}" maxlength="6">
                     </div>
                     <div class="pen">
                         <label for="pen">PEN No*</label>
-                        <input type="text" id="pen" name="penNo">
+                        <input type="text" id="pen" name="penNo" pattern="\d{6}" maxlength="6">
                     </div>
                     <div class="tc">
                         <label for="tc">UDISE TC Status *</label>
@@ -122,11 +122,11 @@
                 </div>
                 <div class="aadhar_no">
                     <label>Student Aadhar No *</label>
-                    <input type="text" name="studentAadharNo">
+                    <input type="text" name="studentAadharNo" pattern="\d{12}" maxlength="12">
                 </div>
                 <div class="rd">
                     <label for="rd">Student RD No *</label>
-                    <input type="text" id="rd" name="studentRdNo">
+                    <input type="text" id="rd" name="studentRdNo" pattern="\d{14}" maxlength="14">
                 </div>
             </div>
         </div>
@@ -140,13 +140,13 @@
                 </div>
                 <div class="aadhar_no">
                     <label>Father Aadhar No *</label>
-                    <input type="text" name="aadharNo">
+                    <input type="text" name="aadharNo" pattern="\d{12}" maxlength="12">
                 </div>
                 <div class="f_occupation">
                     <label>Father's Occupation</label>
                     <input type="text"  name="occupation">
                 </div>
-                <p>Income <input type="text" name="annualIncome"></p>
+                <p>Income <input type="text" name="annualIncome" pattern="\d"></p>
 
             </div>
             <h4>Mother's Details</h4>
@@ -157,7 +157,7 @@
                 </div>
                 <div class="aadhar_no">
                     <label>Mother Aadhar No *</label>
-                    <input type="text" name="aadharNo">
+                    <input type="text" name="aadharNo" pattern="\d{12}" maxlength="12">
                 </div>
                 <div class="f_occupation">
                     <label>Mother's Occupation</label>

@@ -75,7 +75,7 @@
                     </div>
                     <div class="schoolContact">
                         <label for="schoolContact">Contact Number</label>
-                        <input type="tel" id="schoolContact" name="schoolContact">
+                        <input type="tel" id="schoolContact" name="schoolContact" pattern="\d{10}" maxlength="10">
                     </div>
                     <div class="schoolVillage">
                         <label for="schoolVillage">Village/Area</label>
@@ -91,7 +91,7 @@
                     </div>
                     <div class="schoolPin">
                         <label for="schoolPin">PIN Code</label>
-                        <input type="text" id="schoolPin" name="schoolPin" maxlength="6">
+                        <input type="text" id="schoolPin" name="schoolPin" pattern= "\d{6}" maxlength="6">
                     </div>
                 </div>
             </div>
@@ -114,11 +114,11 @@
                         </div>
                         <div class="parentPin">
                             <label for="parentPin">PIN Code *</label>
-                            <input type="text" id="parentPin" name="pin" maxlength="6" required>
+                            <input type="text" id="parentPin" name="pin" pattern="\d{6}" maxlength="6" required>
                         </div>
                         <div class="parentContact">
                             <label for="parentContact">Contact Number *</label>
-                            <input type="tel" id="parentContact" name="contactNo" required>
+                            <input type="tel" id="parentContact" name="contactNo" pattern="\d{10}" maxlength="10" required>
                         </div>
                     </div>
                     <div class="last">
@@ -144,7 +144,7 @@
                         </div>
                         <div class="guardianContact">
                             <label for="guardianContact">Contact Number</label>
-                            <input type="tel" id="guardianContact" name="contactNo">
+                            <input type="tel" id="guardianContact" name="contactNo" pattern="\d{10}" maxlength="10">
                         </div>
                     </div>
                 </div>
