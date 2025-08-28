@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rural Public School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        /* --- Header Section --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(3px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            box-sizing: border-box;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .logo-container img {
+            height: 80px;
+            width: 100px;
+            margin-right: 10px;
+            filter: brightness(1.2) contrast(1.1);
+        }
+
+        .logo-container span {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8em;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            position: relative;
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .nav-links a:hover {
+            color: #ff6f00;
+        }
+
+        /* Dropdown CSS */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            padding: 10px 0;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* --- Hero Section with Sliding Background --- */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .slider-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide:nth-child(1) {
+            background-image: url('img1.jpg');
+        }
+
+        .slide:nth-child(2) {
+            background-image: url('img2.jpg');
+        }
+
+        .slide:nth-child(3) {
+            background-image: url('img3.jpg');
+        }
+
+        .slide:nth-child(4) {
+            background-image: url('img4.jpg');
+        }
+
+        .slide:nth-child(5) {
+            background-image: url('img5.jpg');
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.5em;
+            z-index: 10;
+            transition: background 0.3s ease;
+        }
+
+        .arrow:hover {
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+        }
+
+        .arrow.left {
+            left: 20px;
+        }
+
+        .arrow.right {
+            right: 20px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4em;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            margin: 10px 0 30px;
+            font-weight: 400;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .hero-buttons .button {
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .button.primary {
+            background-color: #ff6f00;
+            color: #fff;
+            border: 1px solid #ff6f00;
+        }
+
+        .button.primary:hover {
+            background-color: #e66300;
+        }
+
+        .button.secondary {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .button.secondary:hover {
+            background-color: #fff;
+        }
+
+        /* --- Footer Section --- */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #aaa;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9em;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .footer-column {
+            flex-basis: 30%;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .footer-column h4 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: #fff;
+        }
+
+        .social-links a {
+            font-size: 40px; /* Adjust size as needed */
+            margin-right: 40px;
+            transition: color 0.3s ease;
+        }
+
+        /* Specific colors for social icons */
+        .social-links .fa-facebook {
+            color: #3b5998; /* Facebook blue */
+        }
+
+        .social-links .fa-instagram {
+            /* Instagram gradient is tricky with pure CSS, using a common purple/pink for simplicity */
+            color: #C13584;
+        }
+
+        .social-links a:hover {
+            filter: brightness(1.2); /* Slight brightening on hover */
+        }
+
+
+        .footer-bottom {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            text-align: center;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo-container">
+        <img  src="/images/trust-logo.png" alt="Trust Logo" width="150">
+        <span>Rural Public School</span>
+    </div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Registration.html">Registration</a></li>
+            <li class="dropdown">
+                <a href="#">Student Details</a>
+                <div class="dropdown-content">
+                    <a href="all-students.html">View All</a>
+                    <a href="fetch-student.html">Find Student</a>
+                </div>
+            </li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Sign In</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="hero-section">
+    <div class="slider-container">
+        <div class="slide active"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <button class="arrow left">&lt;</button>
+        <button class="arrow right">&gt;</button>
+    </div>
+    <div class="hero-content">
+        <h1>EDUCATION FOREVER</h1>
+        <p>Shaping young minds for a brighter tomorrow.</p>
+        <div class="hero-buttons">
+            <a href="Registration.html" class="button primary">Register Now</a>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-column">
+            <h2>Contact Us:</h2>
+            <p>Diddige, Jagaluru(TQ), Davangere(Dist) 577513</p>
+            <p>Phone:+91 9902546021</p>
+            <p>Email:RPS2011@ruralpublicschool.com</p>
+        </div>
+        <div class="footer-column">
+            <h2>Connect:</h2>
+            <div class="social-links">
+                <a href="https://www.facebook.com/p/Rural-Public-School-Diddige-100063588290361/" target="_blank">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                    <a href="https://www.instagram.com/akshara__jyothi?igsh=eGJqazZ0aWJwZ2xx" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 Rural Public School | All Rights Reserved</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const slides = document.querySelectorAll('.slide');
+        const leftArrow = document.querySelector('.arrow.left');
+        const rightArrow = document.querySelector('.arrow.right');
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentIndex = (index + slides.length) % slides.length;
+            slides[currentIndex].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentIndex - 1);
+        }
+
+        if (rightArrow) {
+            rightArrow.addEventListener('click', nextSlide);
+        }
+        if (leftArrow) {
+            leftArrow.addEventListener('click', prevSlide);
+        }
+
+        setInterval(nextSlide, 5000);
+
+        showSlide(0);
+    });
+</script>
+</body>
+</html>
