@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function validatePage() {
+    // Clear previous errors
     document.querySelectorAll(".error-message").forEach(el => el.remove());
     document.querySelectorAll(".input-error").forEach(el => el.classList.remove("input-error"));
 
@@ -83,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
       aadharInfo: {
         studentName: flat.studentName,
         studentAadharNo: flat.studentAadhar,
-        studentRdNo:flat.studentRdNo
+        studentRdNo: flat.studentRdNo
       },
       parents: {
         father: {
@@ -149,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
         headers: headers,
         body: JSON.stringify(body)
       });
+      if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
       return await res.json();
     } catch (err) {
       console.error("Error at fetch POST:", err);
@@ -161,10 +163,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   nextBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+
     if (!validatePage()) return;
 
     if (currentPage === pages.length - 1) {
-      e.preventDefault();
       nextBtn.disabled = true;
 
       const headers = buildHeaders();
@@ -206,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  //  Age auto-calculates
+  // Age auto-calculates
   const dobInput = document.getElementById('dob');
   const ageInput = document.getElementById('age');
 
@@ -233,70 +236,79 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Gurdian Address  Make Same As Parent
-   const sameAsParentCheckbox = document.getElementById("sameAsParent");
-    if (sameAsParentCheckbox) {
-      sameAsParentCheckbox.addEventListener("change", () => {
-        const parentVillage = document.getElementById("parentVillage");
-        const parentTaluk = document.getElementById("parentTaluk");
-        const parentDistrict = document.getElementById("parentDistrict");
-        const parentPincode = document.getElementById("parentPincode");
-        const parentContact = document.getElementById("parentContact");
+  // Guardian Address - Make Same As Parent
+  const sameAsParentCheckbox = document.getElementById("sameAsParent");
+  if (sameAsParentCheckbox) {
+    sameAsParentCheckbox.addEventListener("change", () => {
+      const parentVillage = document.getElementById("parentVillage");
+      const parentTaluk = document.getElementById("parentTaluk");
+      const parentDistrict = document.getElementById("parentDistrict");
+      const parentPincode = document.getElementById("parentPincode");
+      const parentContact = document.getElementById("parentContact");
 
-        const guardianVillage = document.getElementById("guardianVillage");
-        const guardianTaluk = document.getElementById("guardianTaluk");
-        const guardianDistrict = document.getElementById("guardianDistrict");
-        const guardianPincode = document.getElementById("guardianPincode");
-        const guardianContact = document.getElementById("guardianContact");
+      const guardianVillage = document.getElementById("guardianVillage");
+      const guardianTaluk = document.getElementById("guardianTaluk");
+      const guardianDistrict = document.getElementById("guardianDistrict");
+      const guardianPincode = document.getElementById("guardianPincode");
+      const guardianContact = document.getElementById("guardianContact");
 
-        if (sameAsParentCheckbox.checked) {
-          guardianVillage.value = parentVillage.value;
-          guardianTaluk.value = parentTaluk.value;
-          guardianDistrict.value = parentDistrict.value;
-          guardianPincode.value = parentPincode.value;
-          guardianContact.value = parentContact.value;
+      if (sameAsParentCheckbox.checked) {
+        guardianVillage.value = parentVillage.value;
+        guardianTaluk.value = parentTaluk.value;
+        guardianDistrict.value = parentDistrict.value;
+        guardianPincode.value = parentPincode.value;
+        guardianContact.value = parentContact.value;
 
-          guardianVillage.disabled = true;
-          guardianTaluk.disabled = true;
-          guardianDistrict.disabled = true;
-          guardianPincode.disabled = true;
-          guardianContact.disabled = true;
-        } else {
-          guardianVillage.disabled = false;
-          guardianTaluk.disabled = false;
-          guardianDistrict.disabled = false;
-          guardianPincode.disabled = false;
-          guardianContact.disabled = false;
-        }
-      });
-    }
+        guardianVillage.disabled = true;
+        guardianTaluk.disabled = true;
+        guardianDistrict.disabled = true;
+        guardianPincode.disabled = true;
+        guardianContact.disabled = true;
+      } else {
+        guardianVillage.disabled = false;
+        guardianTaluk.disabled = false;
+        guardianDistrict.disabled = false;
+        guardianPincode.disabled = false;
+        guardianContact.disabled = false;
+      }
+    });
+  }
 
+  // Show first page initially
+  showPage(currentPage);
 
-  // Show first page
-  const submit=document.getElementById("submitBtn");
-  submit.addEventListener("click", async (e) => {
-    e.preventDefault();
+  // Submit button handler (if separate from nextBtn submit)
+  const submit = document.getElementById("submitBtn");
+  if (submit) {
+    submit.addEventListener("click", async (e) => {
+      e.preventDefault();
 
-    // Validate current page before submitting
-    if (!validatePage()) return;
+      if (!validatePage()) return;
 
-    submit.disabled = true;  // Disable button to prevent multiple clicks
+      submit.disabled = true;
 
-    const headers = buildHeaders();
-    const jsonFormData = buildNestedFormData(form);
+      const headers = buildHeaders();
+      const jsonFormData = buildNestedFormData(form);
 
-    try {
-      const response = await performHttpRequest("http://localhost:8080/api/student", headers, jsonFormData);
-      console.log("Server Response:", response);
-      alert("Form submitted successfully!");
-      form.reset();
-      currentPage = 0;
-      showPage(currentPage);
-    } catch (error) {
-      console.error("Submit error:", error);
-      alert("Error submitting form. Please try again.");
-    } finally {
-      submit.disabled = false;  // Re-enable button after submission attempt
-    }
-  });
- });
+      try {
+        const response = await performHttpRequest("http://localhost:8080/api/student", headers, jsonFormData);
+        console.log("Server Response:", response);
+        alert("Form submitted successfully!");
+        form.reset();
+        currentPage = 0;
+        showPage(currentPage);
+      } catch (error) {
+        console.error("Submit error:", error);
+        alert("Error submitting form. Please try again.");
+      } finally {
+        submit.disabled = false;
+      }
+    });
+  }
+
+  // Optional: If you want to trigger the displayAllBtn click, make sure the element exists:
+  const displayAllBtn = document.getElementById("displayAllBtn");
+  if (displayAllBtn) {
+    displayAllBtn.click();
+  }
+});
