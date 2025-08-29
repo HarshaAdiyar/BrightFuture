@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fetch Student by ID - Rural Public School Diddige</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<!-- Navbar -->
+<header class="bg-blue-800 text-white shadow-md">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+        <div class="flex items-center">
+            <img src="assets/logo.png" alt="Logo" class="h-10 mr-2" />
+            <h1 class="text-2xl font-bold">Rural Public School Diddige</h1>
+        </div>
+        <nav class="space-x-6">
+            <a href="home.html" class="hover:underline">Home</a>
+            <a href="register.html" class="hover:underline">Register</a>
+            <a href="display.html" class="hover:underline">Display</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="relative bg-cover bg-center h-[80vh]" style="background-image: url('assets/second.jpg');">
+    <div class="absolute top-[10%] left-0 right-0 max-w-4xl mx-auto bg-blue-800 bg-opacity-70 rounded-lg flex flex-col items-center justify-center text-white text-center px-8 py-8">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Welcome to Student Registration Portal</h2>
+        <p class="mb-6 text-lg">Manage student registrations easily and efficiently</p>
+        <div class="space-x-4">
+            <a href="register.html" class="bg-green-500 hover:bg-green-600 px-6 py-2 rounded text-white">Register</a>
+            <a href="display.html" class="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white">Display All</a>
+        </div>
+    </div>
+</section>
+
+<!-- Section: Fetch Student by ID -->
+<section class="text-center py-10 bg-white shadow-md max-w-xl mx-auto rounded-lg mt-8 px-6">
+    <h3 class="text-2xl font-bold text-blue-800 mb-6">Fetch Student by ID</h3>
+
+    <form id="fetchStudentForm" class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <input type="text" id="studentIdInput" name="studentId" placeholder="Enter Student ID" required class="border border-gray-300 rounded px-4 py-2 w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-blue-600"/>
+        <button type="submit" id="fetchDetailsBtn" class="bg-blue-600 text-white rounded px-6 py-2 hover:bg-blue-700 transition">Get Details</button>
+    </form>
+
+    <div id="studentDetails" class="mt-6 text-left hidden p-4 bg-gray-50 border border-gray-200 rounded">
+        <!-- Fetched student details will be displayed here -->
+        <h4 class="font-bold text-lg">Student Details</h4>
+        <p><strong>ID:</strong> <span id="studentId"></span></p>
+        <p><strong>Name:</strong> <span id="studentName"></span></p>
+        <p><strong>Aadhar No:</strong> <span id="studentAadharNo"></span></p>
+        <p><strong>DOB:</strong> <span id="studentDob"></span></p>
+    </div>
+</section>
+
+<script>
+    // URL for fetching a particular student by ID
+    const apiUrl = 'http://localhost:8080/api/student/';
+
+    // Elements references
+    const fetchStudentForm = document.getElementById('fetchStudentForm');
+    const studentIdInput = document.getElementById('studentIdInput');
+    const studentDetailsDiv = document.getElementById('studentDetails');
+    const studentIdDisplay = document.getElementById('studentId');
+    const studentNameDisplay = document.getElementById('studentName');
+    const studentAadharNoDisplay = document.getElementById('studentAadharNo');
+    const studentDobDisplay = document.getElementById('studentDob');
+
+    // Fetch student details by ID
+    async function fetchStudentById(studentId) {
+        try {
+            console.log("Fetching student data for ID:", studentId); // Log to console to verify the ID being sent.
+            const response = await fetch(apiUrl + studentId);
+            if (!response.ok) {
+                throw new Error('Student not found');
+            }
+            const student = await response.json();
+            console.log("Fetched student data:", student); // Log the response to the console
+
+            // Display student details in the div
+            studentDetailsDiv.classList.remove('hidden');
+            studentIdDisplay.textContent = student.studentId || 'N/A';
+            studentNameDisplay.textContent = student.aadharInfo?.studentName || 'N/A';
+            studentAadharNoDisplay.textContent = student.aadharInfo?.studentAadharNo || 'N/A';
+            studentDobDisplay.textContent = student.admission?.dob || 'N/A';
+        } catch (error) {
+            alert('Error: ' + error.message);  // If there's an error, alert the user
+            console.error('Error fetching student data:', error);
+        }
+    }
+
+    // Handle form submission
+    fetchStudentForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from submitting the usual way
+        const studentId = studentIdInput.value.trim();
+        if (studentId) {
+            fetchStudentById(studentId);
+        } else {
+            alert('Please enter a valid student ID');
+        }
+    });
+</script>
+
+</body>
+</html>

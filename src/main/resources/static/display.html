@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Display Students - Rural Public School Diddige</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<!-- Navbar -->
+<header class="bg-blue-800 text-white shadow-md">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+        <div class="flex items-center">
+            <img src="assets/logo.png" alt="Logo" class="h-10 mr-2" />
+            <h1 class="text-2xl font-bold">Rural Public School Diddige</h1>
+        </div>
+        <nav class="space-x-6">
+            <a href="home.html" class="hover:underline">Home</a>
+            <a href="register.html" class="hover:underline">Register</a>
+            <a href="display.html" class="hover:underline">Display</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="max-w-6xl mx-auto mt-12 p-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-3xl font-bold mb-6 text-center text-blue-700">All Registered Students</h2>
+    <div id="loading" class="text-center text-gray-600">Loading students...</div>
+
+    <table id="studentsTable" class="min-w-full divide-y divide-gray-200 hidden">
+        <thead class="bg-blue-600 text-white">
+        <tr>
+            <th class="px-6 py-3 text-left text-sm font-semibold">Student ID</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold">Name</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold">Aadhar No</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold">DOB</th>
+        </tr>
+        </thead>
+        <tbody id="studentsBody" class="bg-white divide-y divide-gray-200"></tbody>
+    </table>
+
+    <div id="noData" class="text-center text-gray-600 hidden">No students found.</div>
+</main>
+
+<!-- JS Logic to Fetch and Display Students -->
+<script>
+    const apiUrl = 'http://localhost:8080/api/student';
+
+    const loadingDiv = document.getElementById('loading');
+    const studentsTable = document.getElementById('studentsTable');
+    const studentsBody = document.getElementById('studentsBody');
+    const noDataDiv = document.getElementById('noData');
+
+    async function fetchStudents() {
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const students = await response.json();
+
+            loadingDiv.style.display = 'none';
+
+            if (!students || students.length === 0) {
+                noDataDiv.style.display = 'block';
+                studentsTable.style.display = 'none';
+                return;
+            }
+
+            studentsTable.style.display = 'table';
+            noDataDiv.style.display = 'none';
+
+            let html = '';
+            students.forEach(stu => {
+                html += `
+                    <tr class="hover:bg-gray-50">
+                        <td class="border px-4 py-2">${stu.studentId}</td>
+                        <td class="border px-4 py-2">${stu.aadharInfo?.studentName || 'N/A'}</td>
+                        <td class="border px-4 py-2">${stu.aadharInfo?.studentAadharNo || 'N/A'}</td>
+                        <td class="border px-4 py-2">${stu.admission?.dob || 'N/A'}</td>
+                    </tr>
+                `;
+            });
+
+            studentsBody.innerHTML = html;
+
+        } catch (error) {
+            loadingDiv.textContent = 'Failed to load students. Please try again later.';
+            console.error('Fetch error:', error);
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', fetchStudents);
+</script>
+
+</body>
+</html>
