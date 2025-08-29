@@ -8,6 +8,7 @@ function calculateAge(dob) {
   }
   return age;
 }
+
 function formatAadhaar(input) {
   let val = input.value.replace(/\D/g, "").slice(0, 12);
   input.value = val.replace(/(\d{4})(?=\d)/g, "$1-");
@@ -162,6 +163,43 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("❌ Submit failed:", err);
         alert("❌ Submit failed. See console for details.");
       }
+    });
+  }
+
+  // ===== View All Students =====
+  const viewAllBtn = document.getElementById("viewAllBtn");
+  if (viewAllBtn) {
+    viewAllBtn.addEventListener("click", async () => {
+      try {
+        const res = await fetch("http://localhost:8080/api/student"); // ✅ Update API URL if needed
+        if (!res.ok) throw new Error("Failed to fetch students");
+
+        const students = await res.json();
+        console.log("📦 All Students:", students);
+        populateStudentsTable(students);
+      } catch (err) {
+        console.error("❌ Error loading students:", err);
+        alert("❌ Failed to load students.");
+      }
+    });
+  }
+
+  function populateStudentsTable(students) {
+    const tableBody = document.querySelector("#studentsTable tbody");
+    if (!tableBody) return;
+
+    tableBody.innerHTML = ""; // Clear previous rows
+
+    students.forEach(student => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${student.id || ""}</td>
+        <td>${student.aadharInfo?.studentName || ""}</td>
+        <td>${student.admission?.dob || ""}</td>
+        <td>${student.admission?.gender || ""}</td>
+        <td>${student.admission?.dateOfAdmission || ""}</td>
+      `;
+      tableBody.appendChild(row);
     });
   }
 });

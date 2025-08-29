@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Find Student by ID</title>
+    <style>
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background: #f4f7f8;
+          margin: 0;
+          padding: 0;
+          color: #333;
+        }
+
+        h2 {
+          text-align: center;
+          margin-top: 40px;
+          color: #2c3e50;
+        }
+
+        .search-container {
+          display: flex;
+          justify-content: center;
+          margin: 30px 0 20px;
+          gap: 10px;
+        }
+
+        input#studentIdInput {
+          width: 280px;
+          padding: 10px 15px;
+          font-size: 16px;
+          border: 1.8px solid #3498db;
+          border-radius: 6px;
+          outline: none;
+          transition: border-color 0.3s;
+        }
+
+        input#studentIdInput:focus {
+          border-color: #2980b9;
+          box-shadow: 0 0 8px rgba(41, 128, 185, 0.3);
+        }
+
+        button {
+          padding: 10px 20px;
+          font-size: 16px;
+          border: none;
+          border-radius: 6px;
+          background-color: #3498db;
+          color: white;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+
+        button:hover {
+          background-color: #2980b9;
+        }
+
+        table {
+          border-collapse: collapse;
+          width: 90%;
+          max-width: 900px;
+          margin: 20px auto 40px;
+          box-shadow: 0 0 15px rgba(0,0,0,0.1);
+          background: white;
+          border-radius: 8px;
+          overflow: hidden;
+        }
+
+        th, td {
+          border: 1px solid #ddd;
+          padding: 12px 15px;
+          text-align: center;
+          font-size: 16px;
+        }
+
+        th {
+          background-color: #34495e;
+          color: white;
+          font-weight: 600;
+          letter-spacing: 0.05em;
+        }
+
+        tbody tr:hover {
+          background-color: #f0f8ff;
+          cursor: default;
+        }
+
+        #studentTable {
+          display: none;
+        }
+    </style>
+</head>
+<body>
+<h2>Find Student by ID</h2>
+
+<div class="search-container">
+    <input type="text" id="studentIdInput" placeholder="Enter Student ID" />
+    <button onclick="fetchStudentById()">Find Student</button>
+</div>
+
+<table id="studentTable">
+    <thead>
+    <tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>DOB</th>
+        <th>Gender</th>
+        <th>Date of Admission</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Student data goes here -->
+    </tbody>
+</table>
+
+<script>
+    function fetchStudentById() {
+      const studentId = document.getElementById('studentIdInput').value.trim();
+
+      if (!studentId) {
+        alert('Please enter a student ID');
+        return;
+      }
+
+      fetch(`http://localhost:8080/api/student/${studentId}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Student not found');
+          }
+          return response.json();
+        })
+        .then(student => {
+          console.log(student);
+          const table = document.getElementById('studentTable');
+          const tbody = table.querySelector('tbody');
+
+          tbody.innerHTML = ''; // Clear old data
+
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${student.studentId}</td>
+            <td>${student.aadharInfo?.studentName || ''}</td>
+            <td>${student.admission?.dob || ''}</td>
+            <td>${student.admission?.gender || ''}</td>
+            <td>${student.admission?.dateOfAdmission || ''}</td>
+          `;
+          tbody.appendChild(tr);
+
+          table.style.display = 'table';
+        })
+        .catch(error => {
+          alert(error.message);
+          document.getElementById('studentTable').style.display = 'none';
+        });
+    }
+</script>
+</body>
+</html>

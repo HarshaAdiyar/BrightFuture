@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>All Students</title>
+    <style>
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background-color: #f4f7f8;
+          margin: 0;
+          padding: 0;
+          color: #2c3e50;
+        }
+
+        h2 {
+          text-align: center;
+          margin: 40px 0 20px;
+          font-weight: 700;
+          font-size: 1.8rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+          color: #34495e;
+        }
+
+        table {
+          width: 90%;
+          max-width: 960px;
+          margin: 0 auto 40px;
+          border-collapse: collapse;
+          background-color: #fff;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        }
+
+        thead {
+          background-color: #34495e;
+          color: #fff;
+          font-weight: 600;
+        }
+
+        th, td {
+          padding: 14px 18px;
+          text-align: center;
+          border-bottom: 1px solid #ddd;
+          font-size: 1rem;
+        }
+
+        tbody tr:nth-child(even) {
+          background-color: #f9fafb;
+        }
+
+        tbody tr:hover {
+          background-color: #eaf3fb;
+        }
+
+        tbody td {
+          color: #2c3e50;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+          table, thead, tbody, th, td, tr {
+            display: block;
+          }
+          thead tr {
+            display: none;
+          }
+          tbody tr {
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            background: white;
+            padding: 10px;
+          }
+          tbody td {
+            text-align: right;
+            padding-left: 50%;
+            position: relative;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #eee;
+          }
+          tbody td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: 600;
+            color: #34495e;
+            text-transform: capitalize;
+          }
+          tbody td:last-child {
+            border-bottom: 0;
+          }
+        }
+
+        /* Error & empty states styling */
+        .message-row td {
+          color: #e74c3c;
+          font-weight: 600;
+          font-size: 1.1rem;
+          padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>📋 All Registered Students</h2>
+
+<table id="studentsTable" aria-describedby="studentsSummary">
+    <thead>
+    <tr>
+        <th scope="col">Student ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">DOB</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Date of Admission</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Rows will be added dynamically -->
+    </tbody>
+</table>
+
+<script>
+    fetch("http://localhost:8080/api/student")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch student data");
+        }
+        return response.json();
+      })
+      .then(data => {
+        const tbody = document.querySelector("#studentsTable tbody");
+        tbody.innerHTML = '';
+
+        if (!Array.isArray(data) || data.length === 0) {
+          const row = document.createElement("tr");
+          row.classList.add('message-row');
+          row.innerHTML = `<td colspan="5">No students found</td>`;
+          tbody.appendChild(row);
+          return;
+        }
+
+        data.forEach(student => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td data-label="Student ID">${student.studentId || student._id || 'N/A'}</td>
+            <td data-label="Name">${student.aadharInfo?.studentName || 'N/A'}</td>
+            <td data-label="DOB">${student.admission?.dob || 'N/A'}</td>
+            <td data-label="Gender">${student.admission?.gender || 'N/A'}</td>
+            <td data-label="Date of Admission">${student.admission?.dateOfAdmission || 'N/A'}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      })
+      .catch(error => {
+        console.error("Error fetching students:", error);
+        const tbody = document.querySelector("#studentsTable tbody");
+        tbody.innerHTML = '';
+        const row = document.createElement("tr");
+        row.classList.add('message-row');
+        row.innerHTML = `<td colspan="5">Error loading data</td>`;
+        tbody.appendChild(row);
+      });
+</script>
+
+</body>
+</html>
