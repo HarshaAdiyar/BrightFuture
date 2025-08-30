@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="box">
+    <label for="searchId">Enter Student ID:</label>
+    <input type="text" id="searchId" placeholder="Enter Student ID">
+    <button type="button" id="fetchBtn">Fetch Details</button>
+</div>
+
+<!-- Table to display all key-values -->
+<div class="box">
+    <h2>Student Details</h2>
+    <table id="detailsTable" border="1" cellpadding="8">
+        <thead>
+        <tr><th>Key</th><th>Value</th></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script src="fetchData.js"></script>
+</body>
+</html>
