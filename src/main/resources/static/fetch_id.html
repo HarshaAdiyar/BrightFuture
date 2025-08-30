@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Fetch Student by ID - Rural Public School Diddige</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+<!-- Fixed Navigation Bar -->
+<header class="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white shadow-md fixed w-full top-0 left-0 z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+        <div class="flex items-center">
+            <img src="assets/logo.png" alt="Logo" class="h-10 mr-2" />
+            <h1 class="text-2xl font-bold">Rural Public School Diddige</h1>
+        </div>
+        <nav class="space-x-6">
+            <a href="home.html" class="hover:underline">Home</a>
+            <a href="index.html" class="hover:underline">Register</a>
+            <a href="display.html" class="hover:underline">Display</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Section: Fetch Student by ID -->
+<section class="text-center py-10 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white shadow-md max-w-4xl mx-auto rounded-lg mt-28 px-6 mb-12">
+    <h3 class="text-2xl font-bold mb-6">Fetch Student by ID</h3>
+
+    <form id="fetchStudentForm" class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <input type="text" id="studentIdInput" name="studentId" placeholder="Enter Student ID"
+               required
+               class="border border-gray-300 rounded px-4 py-2 w-full sm:w-auto text-black focus:outline-none focus:ring-2 focus:ring-blue-300" />
+        <button type="submit" id="fetchDetailsBtn"
+                class="bg-white text-blue-800 font-semibold rounded px-6 py-2 hover:bg-gray-200 transition">
+            Get Details
+        </button>
+    </form>
+
+    <!-- Student details result -->
+    <div id="studentDetails" class="mt-6 text-left hidden p-4 bg-white text-black border border-gray-200 rounded overflow-x-auto">
+        <h4 class="font-bold text-lg mb-4">Student Details</h4>
+        <table class="min-w-full table-auto text-sm whitespace-nowrap">
+            <tbody id="studentDetailsTable" class="divide-y divide-gray-200">
+            <!-- Dynamic content will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+
+<!-- JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const apiUrl = 'http://localhost:8080/api/student/';
+
+        const fetchStudentForm = document.getElementById('fetchStudentForm');
+        const studentIdInput = document.getElementById('studentIdInput');
+        const studentDetailsDiv = document.getElementById('studentDetails');
+        const studentDetailsTable = document.getElementById('studentDetailsTable');
+
+        function addRow(label, value) {
+            return `
+                <tr>
+                    <td class="font-semibold pr-4 py-1">${label}</td>
+                    <td class="py-1">${value !== undefined && value !== null && value !== '' ? value : 'N/A'}</td>
+                </tr>
+            `;
+        }
+
+        async function fetchStudentById(studentId) {
+            try {
+                const response = await fetch(apiUrl + encodeURIComponent(studentId));
+                if (!response.ok) throw new Error('Student not found');
+
+                const student = await response.json();
+                const admission = student.admission || {};
+                const aadhar = student.aadharInfo || {};
+                const personal = student.personalDetails || {};
+                const disability = personal.disability || {};
+                const father = student.parents?.father || {};
+                const mother = student.parents?.mother || {};
+                const guardian = student.parents?.guardian || {};
+                const school = student.previousSchool || {};
+                const address = school.address || {};
+
+                let rows = '';
+                rows += addRow('Student ID', student.studentId);
+                rows += addRow('Name', aadhar.studentName);
+                rows += addRow('Aadhar No', aadhar.studentAadharNo);
+                rows += addRow('RD No', aadhar.studentRdNo);
+                rows += addRow('DOB', admission.dob);
+                rows += addRow('Gender', admission.gender);
+                rows += addRow('Class', admission.class);
+                rows += addRow('Place of Birth', admission.placeOfBirth);
+                rows += addRow('Residential', admission.residential);
+                rows += addRow('Remark', admission.remark);
+                rows += addRow('SATS No', admission.satsNo);
+                rows += addRow('PEN No', admission.penNo);
+                rows += addRow('UDISE TC Status', admission.udiseTcStatus);
+                rows += addRow('TC In Date', admission.tcInDate);
+                rows += addRow('TC Received', admission.tcReceived);
+                rows += addRow('School Place', admission.schoolPlace);
+                rows += addRow('Nationality', personal.nationality);
+                rows += addRow('Caste', personal.caste);
+                rows += addRow('Scheduled Category', personal.scheduledCategory);
+                rows += addRow('Mother Tongue', personal.motherTongue);
+                rows += addRow('Disability Status', disability.status);
+                rows += addRow('Disability Type', disability.type);
+                rows += addRow('Father Name', father.name);
+                rows += addRow('Father Aadhar', father.aadharNo);
+                rows += addRow('Father Occupation', father.occupation);
+                rows += addRow('Father Income', father.annualIncome);
+                rows += addRow('Mother Name', mother.name);
+                rows += addRow('Mother Aadhar', mother.aadharNo);
+                rows += addRow('Mother Occupation', mother.occupation);
+                rows += addRow('Guardian Name', guardian.name);
+                rows += addRow('Guardian Contact', guardian.contactNo);
+                rows += addRow('Prev School Name', school.schoolName);
+                rows += addRow('Village', address.village);
+                rows += addRow('Taluk', address.taluk);
+                rows += addRow('District', address.district);
+                rows += addRow('PIN', address.pin);
+                rows += addRow('School Contact', address.contactNo);
+
+                studentDetailsTable.innerHTML = rows;
+                studentDetailsDiv.classList.remove('hidden');
+            } catch (error) {
+                alert('Error: ' + error.message);
+                studentDetailsDiv.classList.add('hidden');
+            }
+        }
+
+        fetchStudentForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const studentId = studentIdInput.value.trim();
+            if (studentId) {
+                fetchStudentById(studentId);
+            } else {
+                alert('Please enter a valid student ID');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
