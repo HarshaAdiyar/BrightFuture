@@ -39,6 +39,10 @@
                 class="bg-white text-blue-800 font-semibold rounded px-6 py-2 hover:bg-gray-200 transition">
             Get Details
         </button>
+        <button type="submit" id="deleteStudentBtn"
+                class="bg-red-600 text-blue-800 font-semibold rounded px-6 py-2 hover:bg-gray-200 transition">
+            Delete
+        </button>
     </form>
 
     <!-- Student details result -->
@@ -63,6 +67,7 @@
         const studentIdInput = document.getElementById('studentIdInput');
         const studentDetailsDiv = document.getElementById('studentDetails');
         const studentDetailsTable = document.getElementById('studentDetailsTable');
+        const deleteStudentBtn = document.getElementById('deleteStudentBtn');
 
         function addRow(label, value) {
             return `
@@ -76,7 +81,13 @@
         async function fetchStudentById(studentId) {
             try {
                 const response = await fetch(apiUrl + encodeURIComponent(studentId));
-                if (!response.ok) throw new Error('Student not found');
+                if (response.status === 404) {
+                    alert(`❗ Student ID "${studentId}" not found.`);
+                    studentDetailsDiv.classList.add('hidden');
+                    studentDetailsTable.innerHTML = '';
+                    return;
+                }
+                if (!response.ok) throw new Error('Failed to fetch student data.');
 
                 const student = await response.json();
                 const admission = student.admission || {};
@@ -126,16 +137,18 @@
                 rows += addRow('Taluk', address.taluk);
                 rows += addRow('District', address.district);
                 rows += addRow('PIN', address.pin);
-                rows += addRow('School Contact', address.contactNo);
+                rows += addRow('Contact', address.contactNo);
 
                 studentDetailsTable.innerHTML = rows;
                 studentDetailsDiv.classList.remove('hidden');
             } catch (error) {
-                alert('Error: ' + error.message);
+                alert('⚠ Error: ' + error.message);
                 studentDetailsDiv.classList.add('hidden');
+                studentDetailsTable.innerHTML = '';
             }
         }
 
+        // Handle form submission for fetching student
         fetchStudentForm.addEventListener('submit', function (event) {
             event.preventDefault();
             const studentId = studentIdInput.value.trim();
@@ -145,8 +158,42 @@
                 alert('Please enter a valid student ID');
             }
         });
+
+        // Handle delete student by ID
+        deleteStudentBtn.addEventListener('click', async () => {
+            const studentId = studentIdInput.value.trim();
+            if (!studentId) {
+                alert('Please enter a valid student ID');
+                return;
+            }
+
+            const confirmDelete = confirm(`Are you sure you want to delete student with ID: ${studentId}?`);
+            if (!confirmDelete) return;
+
+            try {
+                const response = await fetch(apiUrl + encodeURIComponent(studentId), {
+                    method: 'DELETE'
+                });
+
+                if (response.status === 404) {
+                    alert(`❗ Student ID "${studentId}" not found. Unable to delete.`);
+                    return;
+                }
+
+                if (!response.ok) throw new Error('Failed to delete student.');
+
+                alert('✅ Student deleted successfully.');
+                studentDetailsDiv.classList.add('hidden');
+                studentDetailsTable.innerHTML = '';
+                studentIdInput.value = '';
+            } catch (error) {
+                alert('⚠ Error: ' + error.message);
+            }
+        });
     });
+
 </script>
+
 
 </body>
 </html>

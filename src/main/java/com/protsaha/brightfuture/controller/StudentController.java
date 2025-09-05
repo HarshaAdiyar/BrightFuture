@@ -44,7 +44,11 @@ public class StudentController {
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete Student by ID", description = "Delete a student using their ID.")
     public ResponseEntity<?> deleteStudent(@PathVariable String id) {
+        Optional<Student> student = studentService.getStudentById(id);
+        if (student.isEmpty()) {
+            return ResponseEntity.status(404).body("Student not found with ID: " + id);
+        }
         studentService.deleteStudent(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body("Student deleted successfully.");
     }
 }
