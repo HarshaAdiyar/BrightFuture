@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("studentForm");
+  const form = document.getElementById("studentform");
 
   form.addEventListener("submit", (e) => {
     e.preventDefault(); // stop page refresh

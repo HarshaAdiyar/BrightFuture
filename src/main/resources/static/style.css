@@ -1,8 +1,6 @@
 body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    background-image:url("images/grabient-grid-1756496865006.png");
-    background-size:cover;
-    background-image:norepeat;
+    background: #f9fafb;
     margin: 0;
     padding: 0;
     background-color:#f4e4ba;
@@ -42,7 +40,6 @@ header {
     margin-top: 25px;
     border:solid black;
     padding-left:10px;
-    background-color:bisque;
 }
 
 .last{

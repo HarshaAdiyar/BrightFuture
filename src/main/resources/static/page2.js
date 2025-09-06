@@ -68,15 +68,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         parents: {
            father: {
-           name: page1Data["father.name"],
-           aadharNo: page1Data["father.aadharNo"],
-           occupation: page1Data["father.occupation"],
-           annualIncome: parseFloat["(page1Data.father.income) || 0"]
+           name: page1Data.fatherName,
+           aadharNo: page1Data.fatherAadhar,
+           occupation: page1Data.fatherOccupation,
+           annualIncome: parseFloat(page1Data.fatherIncome) || 0
           },
            mother: {
-           name: page1Data["mother.name"],
-           aadharNo: page1Data["mother.aadharNo"],
-           occupation: page1Data["mother.occupation"]
+           name: page1Data.motherName,
+           aadharNo: page1Data.motherAadhar,
+           occupation: page1Data.motherOccupation
           },
            guardian: {
            name: page1Data.guardianName,
@@ -100,29 +100,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
         previousSchool: {
            schoolName:page2Data.schoolName,
-           address: {
-                    village: page2Data["address.schoolVillage"],
-                    taluk: page2Data["address.schoolTaluk"],
-                    district: page2Data["address.schoolDistrict"],
-                    pin: page2Data["address.schoolPin"],
-                   contactNo: page2Data["address.schoolContact"]
-                     }
+           schoolContact:page2Data.schoolContact,
+           schoolVillage:page2Data.schoolVillage,
+           schoolTaluk:page2Data.schoolTaluk,
+           schoolDistrict:page2Data.schoolDistrict,
+           schoolPin:page2Data.schoolPin
         },
 
         address: {
           parentsAddress: {
-          village: page2Data["parentsAddress.village"],
-          taluk: page2Data["parentsAddress.taluk"],
-          district: page2Data["parentsAddress.district"],
-          pin: page2Data["parentsAddress.pin"],
-         contactNo: page2Data["parentsAddress.contactNo"]
+          village: page2Data.parentVillage,
+          taluk: page2Data.parentTaluk,
+          district: page2Data.parentDistrict,
+          pin: page2Data.parentPin,
+         contactNo: page2Data.parentContact
            },
          guardianAddress: {
-         village: page2Data["guardianAddress.village"],
-         taluk: page2Data["guardianAddress.taluk"],
-        district: page2Data["guardianAddress.district"],
-        pin: page2Data["guardianAddress.pin"],
-        contactNo: page2Data["guardianAddress.contactNo"]
+         village: page2Data.guardianVillage,
+         taluk: page2Data.guardianTaluk,
+        district: page2Data.guardianDistrict,
+        pin: page2Data.guardianPin,
+        contactNo: page2Data.guardianContact
           }
       }
 
