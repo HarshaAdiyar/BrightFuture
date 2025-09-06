@@ -1,0 +1,333 @@
+*{
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, sans-serif;
+    border:border-box;
+}
+
+.panel{
+  margin-top: 150px;   /* adjust depending on navbar height */
+}
+
+.navbar{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    height:150px;
+    background-color:black;
+    background-size:cover;
+    color:white;
+    display:flex;
+    align-items:center;
+    box-shadow: 0 0 25px #ff7eb3, 0 0 25px #ff758c, 0 0 35px #ffce00;
+    border-radius-bottom: 5px;
+}
+
+.nav-logo{
+    height:80px;
+    width:100px;
+    margin-left:50px;
+}
+
+.logo{
+    background-image: url("images/Trust Logo_page-0001.jpg");
+    background-size:cover;
+    height:80px;
+    width:100%;
+    border-radius:1rem;
+}
+
+.border{
+    border:1.5px solid transparent;
+    border-radius:1rem;
+    border-size:cover;
+}
+
+.border:hover{
+    border:2px solid #febd68;
+}
+
+/**box2**/
+.first{
+    color:#FCFF00;
+    font-size:2rem;
+    font-weight:600;
+    margin-left:25px;
+}
+.fa-solid.fa-location-dot {
+  font-size:30px;/* increase size */
+  margin-left:25px;
+}
+.address{
+    font-size:1rem;
+    margin-top:10px;
+    margin-left:10px;
+}
+
+.add-icon{
+   display:flex;
+   display-wrap:wrap
+}
+
+.schoolInformation {
+    padding-left:550px;
+    width:850px;
+    display:flex;
+    justify-content:space-evenly;
+}
+
+.nav-home a{
+    font-size:1.75rem;
+    text-decoration: none;
+    color:white;
+}
+
+.nav-home a:hover {
+               color: #ffeb3b;
+}
+
+.fa-solid.fa-house{
+  font-size:30px;
+}
+
+.nav-about a{
+    font-size:1.75rem;
+    text-decoration: none;
+    color:white;
+}
+
+.nav-about a:hover {
+               color: #ffeb3b;
+}
+
+.nav-admission select{
+    background-color: #f3f3f3;
+       height:30px;
+       width:100%;
+       text-align:center;
+       border-radius:4px;
+       border:none;
+}
+
+.nav-gallery a{
+    font-size:1.75rem;
+    text-decoration: none;
+    color:white;
+}
+
+.nav-gallery a:hover {
+               color: #ffeb3b;
+}
+
+.fa-solid.fa-images{
+  font-size:30px;
+}
+
+.nav-contact a{
+    font-size:1.75rem;
+    text-decoration: none;
+    color:white;
+}
+
+.nav-contact a:hover {
+               color: #ffeb3b;
+}
+
+.fa-solid.fa-address-card{
+  font-size:30px;
+}
+
+.panel {
+   position: relative;
+   height: 80vh;
+   width: 100%;
+   background-size: cover;
+   background-repeat: no-repeat;
+   animation: slider 30s infinite;
+   display:flex;
+   flex-wrap:wrap;
+   flex-direction:column;
+}
+
+@keyframes slider {
+   0%   { background-image: url("images/img1.jpg"); }
+   20%  { background-image: url("images/img2.jpg"); }
+   40%  { background-image: url("images/img3.jpg"); }
+   60%  { background-image: url("images/img1.jpg"); }
+   80%  { background-image: url("images/img2.jpg"); }
+   100% { background-image: url("images/img3.jpg"); }
+}
+
+.panel::before {
+   content:"";
+   position:absolute;
+   top:0;
+   left:0;
+   width:100%;
+   height:100%;
+   background:inherit;
+   opacity:0;
+   animation: fade 30s infinite;
+   z-index:-1;
+}
+
+@keyframes fade {
+   0%,20%,40%,60%,80%,100% { opacity:1; }
+   10%,30%,50%,70%,90% { opacity:0; }
+}
+
+
+#welcome{
+    text-align:center;
+    padding-top:50px;
+    font-size:2rem;
+    font-style: italic;
+}
+
+
+.panel-container{
+   height:30vh;
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   flex-direction:column;
+   padding-top:80px;
+
+}
+
+.panel-login{
+   height:40vh;
+   width:500px;
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   flex-direction:column;
+   margin-top:10px;
+   color:white;
+    border-radius: 16px;
+    border: 2px solid transparent;
+    background-color: linear-gradient(white, white), linear-gradient(to right, #ff7eb3, #ff758c, #ffce00);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.panel-login label{
+      font-size:2rem
+}
+
+.panel-login button{
+     width:200px;
+     height:60px;
+     border-radius:1rem;
+     border-shadow: 0 4px 8px rgba(0,0,0.5,0.75);
+     margin-top:10px;
+     background-color:#0f1111;
+     color:#FCFF00;
+}
+
+.panel-login button:hover{
+   border-color:blue;
+}
+
+/**footer**/
+
+footer{
+    margin-top:3px;
+}
+
+.foot-panel1{
+    background-color:#37475a;
+    color:white;
+    height:50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size:1rem;
+}
+
+.foot-panel2{
+    background-color:#222f3d;
+    color:white;
+    height:250px;
+    display:flex;
+    justify-content:space-evenly;
+}
+ul{
+    margin-top:10px;
+}
+
+ul a{
+    display:block;
+    font-size:1rem;
+    margin-top:10px;
+    color:#dddddd;
+}
+
+.link{
+   display:flex;
+   flex-direction:row;
+}
+.fa-solid.fa-envelope{
+    font-size:30px;
+}
+.fa-brands.fa-linkedin{
+   font-size:30px;
+}
+
+.link a{
+    margin-left:10px;
+}
+
+.fa-brands.fa-square-instagram{
+   font-size:30px;
+}
+
+
+.foot-panel3{
+    background-color:#222f3d;
+    color:white;
+    border-top:0.5px solid white;
+    height:90px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo{
+     background-image: url("images/Trust Logo_page-0001.jpg");
+     background-size:cover;
+     height:80px;
+     width:100px;
+}
+
+.foot-panel4{
+    background-color:#0f1111;
+    color:white;
+    height:80px;
+    font-size:0.7rem;
+    text-align:center;
+}
+
+.pages{
+   padding:10px;
+}
+
+.copyright{
+   padding:5px;
+}
+
+.image-container{
+   display:flex;
+   flex-wrap:wrap;
+   width:100%;
+}
+
+img{
+   height:800px;
+   width:800px;
+   margin-left:100px;
+   margin-top:20px;
+}
+
+
