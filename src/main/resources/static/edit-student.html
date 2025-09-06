@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edit Student</title>
+    <style>
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background: #f4f7f8;
+          margin: 0;
+          padding: 0;
+          color: #333;
+        }
+
+        h2 {
+          text-align: center;
+          margin: 30px 0 20px;
+          color: #2c3e50;
+        }
+
+        form {
+          max-width: 900px;
+          margin: 0 auto 40px;
+          padding: 20px;
+          background: #fff;
+          border-radius: 10px;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        }
+
+        fieldset {
+          border: 1px solid #ddd;
+          margin-bottom: 20px;
+          border-radius: 8px;
+          padding: 15px 20px;
+        }
+
+        legend {
+          font-weight: bold;
+          color: #34495e;
+          padding: 0 8px;
+        }
+
+        label {
+          display: block;
+          margin-top: 12px;
+          font-weight: 500;
+        }
+
+        input, select {
+          width: 100%;
+          padding: 10px;
+          margin-top: 6px;
+          border: 1.5px solid #ccc;
+          border-radius: 6px;
+          font-size: 14px;
+        }
+
+        input:focus, select:focus {
+          border-color: #3498db;
+          outline: none;
+          box-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
+        }
+
+        button {
+          padding: 12px 20px;
+          background: #3498db;
+          color: #fff;
+          border: none;
+          border-radius: 6px;
+          font-size: 16px;
+          cursor: pointer;
+          margin-top: 15px;
+          transition: background 0.3s;
+        }
+
+        button:hover {
+          background: #2980b9;
+        }
+
+        .msg {
+          text-align: center;
+          margin: 15px 0;
+          font-weight: bold;
+        }
+
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+
+<h2>Edit Student</h2>
+<form id="editStudentForm">
+    <fieldset>
+        <legend>Basic Information</legend>
+        <label for="studentName">Name</label>
+        <input type="text" id="studentName" name="studentName" required />
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" required />
+
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+            <option value="">-- Select --</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label for="dateOfAdmission">Date of Admission</label>
+        <input type="date" id="dateOfAdmission" name="dateOfAdmission" required />
+    </fieldset>
+
+    <fieldset>
+        <legend>Parent Information</legend>
+        <label for="fatherName">Father's Name</label>
+        <input type="text" id="fatherName" name="fatherName" />
+
+        <label for="motherName">Mother's Name</label>
+        <input type="text" id="motherName" name="motherName" />
+    </fieldset>
+
+    <fieldset>
+        <legend>Address</legend>
+        <label for="street">Street</label>
+        <input type="text" id="street" name="street" />
+
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" />
+
+        <label for="state">State</label>
+        <input type="text" id="state" name="state" />
+
+        <label for="zip">Zip Code</label>
+        <input type="text" id="zip" name="zip" />
+    </fieldset>
+
+    <fieldset>
+        <legend>School Information</legend>
+        <label for="schoolName">School Name</label>
+        <input type="text" id="schoolName" name="schoolName" />
+
+        <label for="class">Class</label>
+        <input type="text" id="class" name="class" />
+    </fieldset>
+
+    <button type="submit">💾 Save Changes</button>
+    <p id="message" class="msg"></p>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // 1. Get the student ID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const studentId = urlParams.get('id');
+        const messageElement = document.getElementById('message');
+
+        if (!studentId) {
+            messageElement.textContent = "Error: No student ID provided.";
+            messageElement.className = "msg error";
+            return;
+        }
+
+        // 2. Fetch the student's data from the backend
+        fetch(`http://localhost:9090/students/${studentId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Student not found or failed to fetch.");
+                }
+                return response.json();
+            })
+            .then(student => {
+                // 3. Populate the form with the fetched data
+                // Accessing the nested properties as per your JSON response
+                document.getElementById('studentName').value = student.aadharInfo?.studentName || '';
+                document.getElementById('dob').value = student.admission?.dob || '';
+                document.getElementById('gender').value = student.admission?.gender || '';
+                document.getElementById('dateOfAdmission').value = student.admission?.dateOfAdmission || '';
+                document.getElementById('fatherName').value = student.parents?.fatherName || '';
+                document.getElementById('motherName').value = student.parents?.motherName || '';
+                document.getElementById('street').value = student.address?.street || '';
+                document.getElementById('city').value = student.address?.city || '';
+                document.getElementById('state').value = student.address?.state || '';
+                document.getElementById('zip').value = student.address?.zip || '';
+                document.getElementById('schoolName').value = student.schoolInfo?.schoolName || '';
+                document.getElementById('class').value = student.schoolInfo?.className || '';
+            })
+            .catch(error => {
+                messageElement.textContent = "Error: " + error.message;
+                messageElement.className = "msg error";
+                console.error("Error fetching student data:", error);
+            });
+
+        // 4. Handle form submission (saving changes)
+        const editForm = document.getElementById('editStudentForm');
+        editForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            // Recreate the JSON structure to send back to the server
+            const updatedStudent = {
+                "aadharInfo": {
+                    "studentName": document.getElementById('studentName').value
+                },
+                "admission": {
+                    "dob": document.getElementById('dob').value,
+                    "gender": document.getElementById('gender').value,
+                    "dateOfAdmission": document.getElementById('dateOfAdmission').value
+                },
+                "parents": {
+                    "fatherName": document.getElementById('fatherName').value,
+                    "motherName": document.getElementById('motherName').value
+                },
+                "address": {
+                    "street": document.getElementById('street').value,
+                    "city": document.getElementById('city').value,
+                    "state": document.getElementById('state').value,
+                    "zip": document.getElementById('zip').value
+                },
+                "schoolInfo": {
+                    "schoolName": document.getElementById('schoolName').value,
+                    "className": document.getElementById('class').value
+                }
+            };
+
+            fetch(`http://localhost:9090/students/${studentId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedStudent),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to save changes.");
+                }
+                return response.json();
+            })
+            .then(data => {
+                messageElement.textContent = "✅ Student details updated successfully!";
+                messageElement.className = "msg success";
+                console.log("Update successful:", data);
+            })
+            .catch(error => {
+                messageElement.textContent = "❌ " + error.message;
+                messageElement.className = "msg error";
+                console.error("Error updating student:", error);
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

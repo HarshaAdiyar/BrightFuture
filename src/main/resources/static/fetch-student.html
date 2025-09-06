@@ -123,7 +123,7 @@
         return;
       }
 
-      fetch(`http://localhost:8080/api/student/${studentId}`)
+      fetch(`http://localhost:9090/students/${studentId}`)
         .then(response => {
           if (!response.ok) {
             throw new Error('Student not found');
@@ -134,16 +134,15 @@
           console.log(student);
           const table = document.getElementById('studentTable');
           const tbody = table.querySelector('tbody');
-
           tbody.innerHTML = ''; // Clear old data
 
           const tr = document.createElement('tr');
           tr.innerHTML = `
-            <td>${student.studentId}</td>
-            <td>${student.aadharInfo?.studentName || ''}</td>
-            <td>${student.admission?.dob || ''}</td>
-            <td>${student.admission?.gender || ''}</td>
-            <td>${student.admission?.dateOfAdmission || ''}</td>
+            <td>${student._links?.self?.href.split("/").pop() || "N/A"}</td>
+            <td>${student.aadharInfo?.studentName || 'N/A'}</td>
+            <td>${student.admission?.dob || 'N/A'}</td>
+            <td>${student.admission?.gender || 'N/A'}</td>
+            <td>${student.admission?.dateOfAdmission || 'N/A'}</td>
           `;
           tbody.appendChild(tr);
 

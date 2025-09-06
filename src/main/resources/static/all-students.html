@@ -26,8 +26,8 @@
         }
 
         table {
-          width: 90%;
-          max-width: 960px;
+          width: 95%;
+          max-width: 1100px;
           margin: 0 auto 40px;
           border-collapse: collapse;
           background-color: #fff;
@@ -59,6 +59,22 @@
 
         tbody td {
           color: #2c3e50;
+        }
+
+        /* Actions links styling */
+        .actions-links a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 8px;
+            font-size: 14px;
+        }
+
+        .actions-links a:hover {
+            text-decoration: underline;
+        }
+
+        .actions-links a.delete-btn {
+            color: #e74c3c;
         }
 
         /* Responsive */
@@ -119,15 +135,31 @@
         <th scope="col">DOB</th>
         <th scope="col">Gender</th>
         <th scope="col">Date of Admission</th>
+        <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody>
-    <!-- Rows will be added dynamically -->
     </tbody>
 </table>
 
 <script>
-    fetch("http://localhost:8080/api/student")
+    function deleteStudent(id, el) {
+      if (!confirm("Are you sure you want to delete this student?")) return;
+
+      fetch(`http://localhost:9090/students/${id}`, {
+        method: "DELETE"
+      })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("Failed to delete student");
+        }
+        el.closest("tr").remove();
+        alert("Student deleted successfully ✅");
+      })
+      .catch(err => alert(err.message));
+    }
+
+    fetch("http://localhost:9090/students")
       .then(response => {
         if (!response.ok) {
           throw new Error("Failed to fetch student data");
@@ -138,22 +170,33 @@
         const tbody = document.querySelector("#studentsTable tbody");
         tbody.innerHTML = '';
 
-        if (!Array.isArray(data) || data.length === 0) {
+        const students = data._embedded?.students || [];
+
+        if (!Array.isArray(students) || students.length === 0) {
           const row = document.createElement("tr");
           row.classList.add('message-row');
-          row.innerHTML = `<td colspan="5">No students found</td>`;
+          row.innerHTML = `<td colspan="6">No students found</td>`;
           tbody.appendChild(row);
           return;
         }
 
-        data.forEach(student => {
+        students.forEach(student => {
+          const admission = student.admission || {};
+          const aadharInfo = student.aadharInfo || {};
+          const selfLink = student._links?.self?.href;
+          const studentId = selfLink ? selfLink.split("/").pop() : null;
+
           const row = document.createElement("tr");
           row.innerHTML = `
-            <td data-label="Student ID">${student.studentId || student._id || 'N/A'}</td>
-            <td data-label="Name">${student.aadharInfo?.studentName || 'N/A'}</td>
-            <td data-label="DOB">${student.admission?.dob || 'N/A'}</td>
-            <td data-label="Gender">${student.admission?.gender || 'N/A'}</td>
-            <td data-label="Date of Admission">${student.admission?.dateOfAdmission || 'N/A'}</td>
+            <td data-label="Student ID">${studentId}</td>
+            <td data-label="Name">${aadharInfo.studentName || 'N/A'}</td>
+            <td data-label="DOB">${admission.dob || 'N/A'}</td>
+            <td data-label="Gender">${admission.gender || 'N/A'}</td>
+            <td data-label="Date of Admission">${admission.dateOfAdmission || 'N/A'}</td>
+            <td data-label="Actions" class="actions-links">
+                <a href="edit-student.html?id=${studentId}">✏️ Edit</a>
+                <a href="#" onclick="deleteStudent('${studentId}', this)" class="delete-btn">🗑️ Delete</a>
+            </td>
           `;
           tbody.appendChild(row);
         });
@@ -164,7 +207,7 @@
         tbody.innerHTML = '';
         const row = document.createElement("tr");
         row.classList.add('message-row');
-        row.innerHTML = `<td colspan="5">Error loading data</td>`;
+        row.innerHTML = `<td colspan="6">Error loading data</td>`;
         tbody.appendChild(row);
       });
 </script>

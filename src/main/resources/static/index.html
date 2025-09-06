@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rural Public School</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Font Awesome for Social Media Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -158,23 +160,23 @@
         }
 
         .slide:nth-child(1) {
-            background-image: url('img1.jpg');
+            background-image: url('/images/img1.jpg');
         }
 
         .slide:nth-child(2) {
-            background-image: url('img2.jpg');
+            background-image: url('/images/img2.jpg');
         }
 
         .slide:nth-child(3) {
-            background-image: url('img3.jpg');
+            background-image: url('/images/img3.jpg');
         }
 
         .slide:nth-child(4) {
-            background-image: url('img4.jpg');
+            background-image: url('/images/img4.jpg');
         }
 
         .slide:nth-child(5) {
-            background-image: url('img5.jpg');
+            background-image: url('/images/img5.jpg');
         }
 
         .arrow {
@@ -306,25 +308,16 @@
         }
 
         .social-links a {
-            font-size: 40px; /* Adjust size as needed */
-            margin-right: 40px;
-            transition: color 0.3s ease;
-        }
-
-        /* Specific colors for social icons */
-        .social-links .fa-facebook {
-            color: #3b5998; /* Facebook blue */
-        }
-
-        .social-links .fa-instagram {
-            /* Instagram gradient is tricky with pure CSS, using a common purple/pink for simplicity */
-            color: #C13584;
+            font-size: 2em;
+            color: #aaa;
+            margin-right: 20px;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .social-links a:hover {
-            filter: brightness(1.2); /* Slight brightening on hover */
+            color: #fff;
+            transform: scale(1.2);
         }
-
 
         .footer-bottom {
             background-color: rgba(0, 0, 0, 0.5);
@@ -338,17 +331,17 @@
 
 <header class="header">
     <div class="logo-container">
-        <img  src="/images/trust-logo.png" alt="Trust Logo" width="150">
+        <img src="/images/trust-logo.png" alt="School Logo">
         <span>Rural Public School</span>
     </div>
     <nav>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="Registration.html">Registration</a></li>
+            <li><a href="register.html">Registration</a></li>
             <li class="dropdown">
                 <a href="#">Student Details</a>
                 <div class="dropdown-content">
-                    <a href="view-all.html">View All</a>
+                    <a href="all-students.html">View All</a>
                     <a href="fetch-student.html">Find Student</a>
                 </div>
             </li>
@@ -372,7 +365,7 @@
         <h1>EDUCATION FOREVER</h1>
         <p>Shaping young minds for a brighter tomorrow.</p>
         <div class="hero-buttons">
-            <a href="Registration.html" class="button primary">Register Now</a>
+            <a href="register.html" class="button primary">Register Now</a>
         </div>
     </div>
 </main>
@@ -391,10 +384,8 @@
                 <a href="https://www.facebook.com/p/Rural-Public-School-Diddige-100063588290361/" target="_blank">
                     <i class="fab fa-facebook"></i>
                 </a>
-                    <a href="https://www.instagram.com/akshara__jyothi?igsh=eGJqazZ0aWJwZ2xx" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-
+                <a href="https://www.instagram.com/akshara__jyothi?igsh=eGJqazZ0aWJwZ2xx" target="_blank">
+                    <i class="fab fa-instagram"></i>
                 </a>
             </div>
         </div>

@@ -5,12 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>📚 BrightFuture — Student Registration</title>
     <link rel="stylesheet" href="styles.css"/>
+    <style>
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #28a745;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: opacity 0.5s, visibility 0.5s;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .toast.error {
+            background-color: #dc3545;
+        }
+
+        .toast.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
 </head>
 <body>
 <h2>📚 BrightFuture — Student Registration</h2>
 
 <form id="studentForm" novalidate>
-    <!-- 📅 Admission -->
     <fieldset>
         <legend>📅 Admission Information</legend>
 
@@ -33,8 +58,6 @@
 
         <label>Age</label>
         <input type="number" id="age" name="admission.age" min="3" max="25" readonly placeholder="Auto-calculated"  />
-
-
 
         <label>Place of Birth</label>
         <input type="text" id="placeOfBirth" name="admission.placeOfBirth"
@@ -75,7 +98,6 @@
                pattern="^[A-Za-z\s]+$" title="Only letters allowed" />
     </fieldset>
 
-    <!-- 🆔 Aadhaar -->
     <fieldset>
         <legend>🆔 Student Aadhaar Information</legend>
 
@@ -89,7 +111,6 @@
                pattern="^\d{4}-\d{4}-\d{4}$" title="Enter Aadhaar as XXXX-XXXX-XXXX" />
     </fieldset>
 
-    <!-- 👨‍👩‍👧‍👦 Parents -->
     <fieldset>
         <legend>👨‍👩‍👧‍👦 Parents Information</legend>
 
@@ -135,7 +156,6 @@
                pattern="^\d{3}-\d{3}-\d{4}$" title="Enter phone as XXX-XXX-XXXX" />
     </fieldset>
 
-    <!-- 🌍 Personal Details -->
     <fieldset>
         <legend>🌍 Personal Details</legend>
 
@@ -171,7 +191,6 @@
         </div>
     </fieldset>
 
-    <!-- 🏠 Address -->
     <fieldset>
         <legend>🏠 Address</legend>
 
@@ -208,7 +227,6 @@
                pattern="^\d{3}-\d{3}-\d{4}$" title="Enter phone as XXX-XXX-XXXX" />
     </fieldset>
 
-    <!-- 🏫 Previous School -->
     <fieldset>
         <legend>🏫 Previous School</legend>
 
@@ -240,17 +258,90 @@
 
 <div id="toast" class="toast hidden"></div>
 
-<script src="script.js"></script>
 <script>
-    function showToast(message) {
-      const toast = document.getElementById("toast");
-      toast.textContent = message;
-      toast.classList.remove("hidden");
-      setTimeout(() => toast.classList.add("hidden"), 3000);
+    // Helper function to convert dot-notation form data into a nested object
+    function formToNestedObject(formData) {
+        const data = {};
+        for (let [key, value] of formData.entries()) {
+            const parts = key.split('.');
+            let current = data;
+            while (parts.length > 1) {
+                const part = parts.shift();
+                if (!current[part]) {
+                    current[part] = {};
+                }
+                current = current[part];
+            }
+            current[parts[0]] = value;
+        }
+        return data;
     }
+
+    function showToast(message, isSuccess = true) {
+        const toast = document.getElementById("toast");
+        toast.textContent = message;
+        toast.classList.remove("hidden", "error");
+        if (!isSuccess) {
+            toast.classList.add("error");
+        }
+        setTimeout(() => toast.classList.add("hidden"), 3000);
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
-      const form = document.getElementById("studentForm");
-      if (form) form.addEventListener("submit", () => showToast("✅ Form submitted!"));
+        const form = document.getElementById("studentForm");
+        const dobInput = document.getElementById("dob");
+        const ageInput = document.getElementById("age");
+
+        // Calculate age automatically
+        dobInput.addEventListener('change', () => {
+            const dob = new Date(dobInput.value);
+            const today = new Date();
+            const age = today.getFullYear() - dob.getFullYear();
+            ageInput.value = age;
+        });
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // TEMPORARILY REMOVE VALIDATION FOR DEBUGGING
+            // if (!form.checkValidity()) {
+            //     showToast("Please fill out all required fields.", false);
+            //     return;
+            // }
+
+            const formData = new FormData(form);
+            const requestBody = formToNestedObject(formData);
+
+            // Log the JSON to verify the structure before sending
+            console.log("Sending JSON:", JSON.stringify(requestBody, null, 2));
+
+            fetch("http://localhost:9090/students", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(requestBody),
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    // Log the full error to the console
+                    return response.text().then(text => {
+                        console.error("Server responded with:", text);
+                        throw new Error(text)
+                    });
+                }
+            })
+            .then(data => {
+                showToast("✅ Form submitted successfully!");
+                form.reset();
+            })
+            .catch(error => {
+                console.error("Error submitting form:", error);
+                showToast("❌ An error occurred. Check the console for details.", false);
+            });
+        });
     });
 </script>
 </body>
