@@ -272,3 +272,17 @@ ul a{
 .copyright{
    padding:5px;
 }
+
+.image-container{
+   display:flex;
+   flex-wrap:wrap;
+   width:100%;
+}
+
+img{
+   height:800px;
+   width:800px;
+   margin-left:100px;
+   margin-top:20px;
+}
+
