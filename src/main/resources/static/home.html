@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Rural Public School Diddige</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"><!--social media icons-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"><!--Imports the Roboto font from Google Fonts.-->
+
+
+
+
+</head>
+<style>
+
+    /* Background Slideshow */
+    .slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      animation: slideShow 15s infinite;
+    }
+    .slideshow img:nth-child(1) { animation-delay: 0s; }
+    .slideshow img:nth-child(2) { animation-delay: 2s; }
+    .slideshow img:nth-child(3) { animation-delay: 4s; }
+    .slideshow img:nth-child(4) { animation-delay: 8s; }
+    .slideshow img:nth-child(5) { animation-delay: 10s; }
+
+    @keyframes slideShow {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      30% { opacity: 1; }
+      40% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+</style>
+<!-- Navbar -->
+<header class="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white shadow-md">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+        <div class="flex items-center">
+            <img src="assets/logo.png" alt="Logo" class="h-12 mr-4" />
+            <h1 class="text-2xl font-bold">Rural Public School Diddige</h1>
+        </div>
+        <nav class="space-x-6">
+            <a href="home.html" class="hover:underline">Home</a>
+            <a href="gallery.html" class="hover:underline">Gallery</a>
+            <a href="home.html" class="hover:underline">Sports</a>
+            <a href="register.html" class="hover:underline">Register</a>
+            <a href="display.html" class="hover:underline">Display</a>
+            <a href="fetch_id.html" class="hover:underline">Fetch</a>
+            <a href="home.html" class="hover:underline">Login</a>
+            <a href="home.html" class="hover:underline">sign in</a>
+
+        </nav>
+    </div>
+</header>
+
+
+<!-- Hero Section -->
+<section class="relative h-[80vh] overflow-hidden">
+
+    <!-- Slideshow Background -->
+    <div class="slideshow">
+        <img src="assets/second.png" alt="Background 1">
+        <img src="assets/1.png" alt="Background 2">
+        <img src="assets/2.png" alt="Background 3">
+        <img src="assets/3.png" alt="Background 4">
+        <img src="assets/4.png" alt="Background 5">
+    </div>
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+
+    <!-- Content -->
+    <div class="relative z-20 top-[60%] max-w-4xl mx-auto bg-blue-800 bg-opacity-70 rounded-lg flex flex-col items-center justify-center text-white text-center px-8 py-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-white drop-shadow-lg mb-3">Welcome to Our School Portal</h2>
+        <p class="text-lg md:text-xl italic text-yellow-300 mb-6">"Education Forever"</p>
+        <div class="space-x-4">
+            <a href="register.html" class="bg-green-500 hover:bg-green-600 px-6 py-2 rounded text-white">Register Now</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer -->
+<section class="bg-gray-800/95 text-gray-200 py-10 relative z-10">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 px-6">
+
+        <!-- Contact Us -->
+        <div>
+            <h2 class="text-lg font-semibold mb-3">Contact Us</h2>
+            <p class="text-sm">📍 Diddige, Jagalur Taluk, Davangere District, 577513</p>
+            <p class="text-sm">📞 +91 6361669294</p>
+            <p class="text-sm">📧 rps@123gmail.com</p>
+        </div>
+
+        <!-- Connect -->
+        <div>
+            <h2 class="text-lg font-semibold mb-3">Connect</h2>
+            <p class="text-sm">Follow us on social media:</p>
+            <div class="flex space-x-4 mt-2">
+                <a href="https://www.facebook.com/p/Rural-Public-School-Diddige-100063588290361/" target="_blank" class="text-blue-500 text-xl hover:text-blue-700">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/akshara__jyothi?igsh=eGJqazZ0aWJwZ2xx" target="_blank" class="text-pink-500 text-xl hover:text-pink-700">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900/90 text-gray-300 py-4 mt-auto relative z-10">
+    <div class="text-center">
+        <p class="text-sm">&copy; 2025 Rural Public School. All rights reserved.</p>
+        <p class="text-xs">Diddige, Jagalur Taluk, Davangere District, 577513</p>
+    </div>
+</footer>
+</body>
+</html>

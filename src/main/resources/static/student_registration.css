@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base font */
+body {
+  font-family: 'Urbanist', sans-serif;
+}
+
+/* Labels */
+.form-label {
+  @apply text-sm font-medium text-blue-700 mb-1 block;
+}
+
+/* Inputs */
+.form-input {
+  @apply w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm
+         transition hover:shadow-md focus:ring-2 focus:ring-blue-500
+         text-gray-900;
+}
+
+/* Disabled input */
+.form-input-disabled {
+  @apply bg-blue-100 text-blue-500 cursor-not-allowed;
+}
+
+/* Selects */
+.form-select {
+  @apply w-full p-3 bg-blue-50 border border-blue-300 rounded-lg shadow-sm
+         transition hover:shadow-md focus:ring-2 focus:ring-blue-500
+         text-gray-900;
+}
+
+/* Section headings */
+.section-heading {
+  @apply text-2xl font-semibold text-blue-600 mb-4 border-b border-blue-400 pb-1;
+}
+
+/* Page headings */
+.page-title {
+  @apply text-4xl font-bold text-blue-600 drop-shadow-sm;
+}
+
+.page-subtitle {
+  @apply text-blue-700 mt-1;
+}
+
+/* Form section wrapper */
+.form-section {
+  @apply mt-10;
+}
+
+/* Grid layouts */
+.form-grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-6;
+}
+
+.form-grid-2 {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+/* Checkbox & Radio */
+.form-checkbox-label {
+  @apply inline-flex items-center text-blue-700 font-medium text-sm;
+}
+
+.radio-group {
+  @apply flex gap-4 mt-2 text-blue-800;
+}
+
+/* Error states */
+.error-message {
+  @apply text-sm text-red-600 mt-1;
+}
+
+.input-error {
+  @apply border-red-500 ring-1 ring-red-300;
+}
+
+/* Buttons */
+.form-btn {
+  @apply bg-blue-600 text-white px-6 py-2 rounded-lg shadow
+         hover:bg-blue-700 focus:ring-2 focus:ring-blue-400
+         transition font-medium;
+}
+
+.form-btn-secondary {
+  @apply bg-gray-400 text-white px-6 py-2 rounded-lg shadow
+         hover:bg-gray-500 focus:ring-2 focus:ring-gray-300
+         transition font-medium;
+}

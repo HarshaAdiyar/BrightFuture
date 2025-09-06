@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Display Students - Rural Public School Diddige</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans"><!--Sets background color to light gray and uses a sans-serif font.-->
+
+<!-- Navbar -->
+<header class="bg-blue-800 text-white shadow-md"><!--🔹 Blue background, white text, and a shadow below the header.-->
+    <div class="container mx-auto flex justify-between items-center py-5 px-7"><!--Centers the content (mx-auto), uses flexbox to arrange logo and nav links.-->
+        <div class="flex items-center">
+            <img src="assets/logo.png" alt="Logo" class="h-10 mr-2" />
+            <h1 class="text-2xl font-bold">Rural Public School Diddige</h1>
+        </div>
+        <nav class="space-x-6">
+            <a href="home.html" class="hover:underline">Home</a>
+            <a href="register.html" class="hover:underline">Register</a>
+            <a href="display.html" class="hover:underline">Display</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content -->
+<section class="p-6">
+    <div class="bg-white shadow-lg rounded-lg overflow-x-auto">
+        <h2 class="text-2xl font-bold text-center text-blue-800 p-4">All Registered Students</h2>
+        <div class="overflow-x-auto">
+            <table class="table-auto w-full text-sm text-left border-collapse min-w-[1200px]">
+                <thead class="bg-blue-700 text-white">
+                <tr>
+                    <th class="px-4 py-2">Student ID</th>
+                    <th class="px-4 py-2">Name</th>
+                    <th class="px-4 py-2">Aadhar No</th>
+                    <th class="px-4 py-2">RD No</th>
+                    <th class="px-4 py-2">DOB</th>
+                    <th class="px-4 py-2">Gender</th>
+                    <th class="px-4 py-2">Class</th>
+                    <th class="px-4 py-2">Place of Birth</th>
+                    <th class="px-4 py-2">Residential</th>
+                    <th class="px-4 py-2">SATS No</th>
+                    <th class="px-4 py-2">PEN No</th>
+                    <th class="px-4 py-2">UDISE TC Status</th>
+                    <th class="px-4 py-2">TC In Date</th>
+                    <th class="px-4 py-2">TC Received</th>
+                    <th class="px-4 py-2">School Place</th>
+                    <th class="px-4 py-2">Nationality</th>
+                    <th class="px-4 py-2">Caste</th>
+                    <th class="px-4 py-2">Scheduled Category</th>
+                    <th class="px-4 py-2">Mother Tongue</th>
+                    <th class="px-4 py-2">Disability Status</th>
+                    <th class="px-4 py-2">Disability Type</th>
+                    <th class="px-4 py-2">Father Name</th>
+                    <th class="px-4 py-2">Father Aadhar</th>
+                    <th class="px-4 py-2">Father Occupation</th>
+                    <th class="px-4 py-2">Father Income</th>
+                    <th class="px-4 py-2">Mother Name</th>
+                    <th class="px-4 py-2">Mother Aadhar</th>
+                    <th class="px-4 py-2">Mother Occupation</th>
+                    <th class="px-4 py-2">Guardian Name</th>
+                    <th class="px-4 py-2">Guardian Contact</th>
+                    <th class="px-4 py-2">Previous School</th>
+                    <th class="px-4 py-2">Village</th>
+                    <th class="px-4 py-2">Taluk</th>
+                    <th class="px-4 py-2">District</th>
+                    <th class="px-4 py-2">PIN</th>
+                    <th class="px-4 py-2">Contact No</th>
+                </tr>
+                </thead>
+                <tbody id="studentsTableBody" class="bg-white text-black">
+                <!-- Dynamic Rows Inserted Here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script>
+
+      const tbody = document.getElementById("studentsTableBody");
+
+      fetch('http://localhost:8080/api/student')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch student data');
+          }
+          return response.json(); // Convert JSON string to JS object
+        })
+        .then(students => {
+          tbody.innerHTML = ''; // Clear loading row
+
+          students.forEach(student => {
+            const admission = student.admission || {};
+            const aadhar = student.aadharInfo || {};
+            const personal = student.personalDetails || {};
+            const father = student.parents?.father || {};
+            const mother = student.parents?.mother || {};
+            const guardian = student.parents?.guardian || {};
+            const school = student.previousSchool || {};
+            const address = school.address || {};
+            const disability = personal.disability || {};
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td class="border px-4 py-2">${student.studentId}</td>
+              <td class="border px-4 py-2">${aadhar.studentName || 'N/A'}</td>
+              <td class="border px-4 py-2">${aadhar.studentAadharNo || 'N/A'}</td>
+              <td class="border px-4 py-2">${aadhar.studentRdNo || 'N/A'}</td>
+              <td class="border px-4 py-2">${admission.dob || 'N/A'}</td>
+              <td class="border px-4 py-2">${admission.gender || 'N/A'}</td>
+              <td class="border px-4 py-2">${admission.class || 'N/A'}</td>
+              <td class="border px-4 py-2">${admission.placeOfBirth || 'N/A'}</td>
+              <td class="border px-4 py-2">${admission.residential || 'N/A'}</td>
+              <td class="border px-4 py-2">${admission.satsNo || 'N/A'}</td>
+              <td class="border px-4 py-2">${admission.penNo || 'N/A'}</td>
+              <td class="border px-4 py-2">${admission.udiseTcStatus || 'N/A'}</td>
+              <td class="border px-4 py-2">${admission.tcInDate || 'N/A'}</td>
+              <td class="border px-4 py-2">${admission.tcReceived || 'N/A'}</td>
+              <td class="border px-4 py-2">${admission.schoolPlace || 'N/A'}</td>
+              <td class="border px-4 py-2">${personal.nationality || 'N/A'}</td>
+              <td class="border px-4 py-2">${personal.caste || 'N/A'}</td>
+              <td class="border px-4 py-2">${personal.scheduledCategory || 'N/A'}</td>
+              <td class="border px-4 py-2">${personal.motherTongue || 'N/A'}</td>
+              <td class="border px-4 py-2">${disability.status || 'N/A'}</td>
+              <td class="border px-4 py-2">${disability.type || 'N/A'}</td>
+              <td class="border px-4 py-2">${father.name || 'N/A'}</td>
+              <td class="border px-4 py-2">${father.aadharNo || 'N/A'}</td>
+              <td class="border px-4 py-2">${father.occupation || 'N/A'}</td>
+              <td class="border px-4 py-2">${father.annualIncome || 'N/A'}</td>
+              <td class="border px-4 py-2">${mother.name || 'N/A'}</td>
+              <td class="border px-4 py-2">${mother.aadharNo || 'N/A'}</td>
+              <td class="border px-4 py-2">${mother.occupation || 'N/A'}</td>
+              <td class="border px-4 py-2">${guardian.name || 'N/A'}</td>
+              <td class="border px-4 py-2">${guardian.contactNo || 'N/A'}</td>
+              <td class="border px-4 py-2">${school.schoolName || 'N/A'}</td>
+              <td class="border px-4 py-2">${address.village || 'N/A'}</td>
+              <td class="border px-4 py-2">${address.taluk || 'N/A'}</td>
+              <td class="border px-4 py-2">${address.district || 'N/A'}</td>
+              <td class="border px-4 py-2">${address.pin || 'N/A'}</td>
+              <td class="border px-4 py-2">${address.contactNo || 'N/A'}</td>
+            `;
+            tbody.appendChild(row);
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching students:", error);
+          tbody.innerHTML = `<tr><td colspan="35" class="text-center text-red-500">Failed to load data</td></tr>`;
+        });
+</script>
+
+
+
+</body>
+</html>

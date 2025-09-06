@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Rural Public School Diddige</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"><!--social media icons-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"><!--Imports the Roboto font from Google Fonts.-->
+</head>
+<style>
+
+    /* Background Slideshow */
+    .slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      animation: slideShow 15s infinite;
+    }
+    .slideshow img:nth-child(1) { animation-delay: 0s; }
+    .slideshow img:nth-child(2) { animation-delay: 2s; }
+    .slideshow img:nth-child(3) { animation-delay: 4s; }
+    .slideshow img:nth-child(4) { animation-delay: 8s; }
+    .slideshow img:nth-child(5) { animation-delay: 10s; }
+    .slideshow img:nth-child(6) { animation-delay: 12s; }
+    .slideshow img:nth-child(7) { animation-delay: 14s; }
+    .slideshow img:nth-child(8) { animation-delay: 16s; }
+
+    @keyframes slideShow {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      30% { opacity: 1; }
+      40% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+</style>
+<!-- Navbar -->
+<header class="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white shadow-md">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+        <div class="flex items-center">
+            <img src="assets/logo.png" alt="Logo" class="h-12 mr-4" />
+            <h1 class="text-2xl font-bold">Rural Public School Diddige</h1>
+        </div>
+        <nav class="space-x-6">
+            <div class="relative z-20 max-w-4xl mt-20 md:mt-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">Our School Gallery</h1>
+                <p class="text-lg md:text-xl italic text-yellow-300">Capturing beautiful memories...</p>
+            </div>
+
+        </nav>
+    </div>
+</header>
+
+
+<!-- Hero Section -->
+
+<section class="relative h-[80vh] overflow-hidden">
+    <!-- Slideshow Background -->
+    <div class="slideshow">
+        <img src="assets/eigth.png" alt="Background 1">
+        <img src="assets/eleventh.png" alt="Background 2">
+        <img src="assets/fourth.png" alt="Background 3">
+        <img src="assets/seventh.png" alt="Background 4">
+        <img src="assets/nineth.png" alt="Background 5">
+        <img src="assets/tenth.png" alt="Background 6">
+        <img src="assets/tweleth.png" alt="Background 7">
+        <img src="assets/thirteen.png" alt="Background 8">
+    </div>
+
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+
+
+
+
+</section>
+
+<!-- ✅ Gallery Section -->
+<section id="gallery" class="bg-gray-800 py-16 px-6">
+    <div class="max-w-7xl mx-auto space-y-16">
+
+        <!-- Image Left, Text Right -->
+        <div class="flex flex-col md:flex-row-reverse items-center gap-8">
+            <img src="assets/6.png" alt="Festival Celebrations" class="w-full md:w-1/2 rounded-lg shadow-lg" />
+            <div class="md:w-1/2 text-center md:text-left">
+                <h2 class="text-2xl font-semibold mb-2 text-yellow-300">State-level Drama Finalists – Celebrating our young performers who made it to the top through district competitions.</h2>
+                <p class="text-lg text-gray-300">
+                    Our students have consistently showcased exceptional talent in the performing arts, particularly in theatre. They have actively participated in district-level drama competitions and have gone on to represent our school at the state level, earning recognition for their creativity, stage presence, and teamwork. These achievements reflect not only their dedication but also the strong foundation in cultural education provided at Rural Public School Diddige.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="flex flex-col md:flex-row items-center gap-8">
+            <img src="assets/third.png" alt="Sports Day" class="w-full md:w-1/2 rounded-lg shadow-lg" />
+            <div class="md:w-1/2 text-center md:text-left">
+                <h2 class="text-2xl font-semibold mb-2 text-yellow-300">Championing excellence in athletics and team games.</h2>
+                <p class="text-lg text-gray-300">
+                    Our students have demonstrated remarkable performance in various sports and athletic events. With disciplined training and team spirit, they have represented our school at the district level and proudly advanced to the state-level competitions in track and field,kho kho, kabaddi, and volleyball. These milestones are a testament to our school’s commitment to physical education and holistic student development.
+            </div>
+        </div>
+
+        <!-- Image Right, Text Left -->
+        <div class="flex flex-col md:flex-row-reverse items-center gap-8">
+            <img src="assets/5.png" alt="Festival Celebrations" class="w-full md:w-1/2 rounded-lg shadow-lg" />
+            <div class="md:w-1/2 text-center md:text-left">
+                <h2 class="text-2xl font-semibold mb-2 text-yellow-300">Celebrating culture through music, dance, and festivals</h2>
+                <p class="text-lg text-gray-300">
+                    At Rural Public School Diddige, cultural events are celebrated with great enthusiasm and inclusivity. From traditional festivals like Independence Day, Kannada Rajyotsava, and Deepavali to school-organized cultural days, our students actively participate in music, dance, art, and drama performances. These celebrations not only nurture creativity and expression but also promote respect for diversity and our rich cultural heritage.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ✅ Footer / Contact Section (Optional Placeholder) -->
+<section id="contact" class="bg-gray-900 py-12 text-center text-sm text-gray-400">
+    <p>© 2025 Rural Public School Diddige. All rights reserved.</p>
+</section>
+
+</body>
+</html>
