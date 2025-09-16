@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Teacher {
     private String teacherId;
-    private Employment employment;       // Another team member's part
-    private TeacherAadharInfo aadharInfo;       // Your part
+    private Employment employment;
+    private TeacherAadharInfo aadharInfo;
     private PersonalDetails personalDetails;
     private Address address;
     private List<Qualification> qualifications;
