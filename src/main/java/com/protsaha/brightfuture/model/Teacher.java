@@ -11,7 +11,7 @@ public class Teacher {
     private List<Qualification> qualifications;
     private List<Experience> experience;
 
-    // Getters and Setters
+
     public String getTeacherId() {
         return teacherId;
     }
