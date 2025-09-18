@@ -1,4 +1,4 @@
 package com.protsaha.brightfuture.model;
 
-public class Teacher_Address {
+public class Experience {
 }

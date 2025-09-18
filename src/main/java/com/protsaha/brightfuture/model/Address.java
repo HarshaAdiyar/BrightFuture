@@ -1,19 +1,40 @@
+// File: src/main/java/com/protsaha/brightfuture/model/Address.java
+
 package com.protsaha.brightfuture.model;
 
-import lombok.Data;
+// Use this if you are using Lombok
+// import lombok.Data;
 
-@Data
+// @Data // Place the @Data annotation at the class level
 public class Address {
-    private AddressDetail parentsAddress;
-    private AddressDetail guardianAddress;
+    private String street;
+    private String city;
+    private String state;
+    private String zipCode;
 
-    @Data
-    public static class AddressDetail {
-        private String village;
-        private String taluk;
-        private String district;
-        private String pin;
-        private String contactNo;
-
+    // Getters and Setters for the fields are also required if not using Lombok
+    public String getStreet() {
+        return street;
+    }
+    public void setStreet(String street) {
+        this.street = street;
+    }
+    public String getCity() {
+        return city;
+    }
+    public void setCity(String city) {
+        this.city = city;
+    }
+    public String getState() {
+        return state;
+    }
+    public void setState(String state) {
+        this.state = state;
+    }
+    public String getZipCode() {
+        return zipCode;
+    }
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 }

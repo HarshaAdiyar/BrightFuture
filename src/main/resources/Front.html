@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rural Public School</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* Background Slideshow */
+        .slideshow {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          overflow: hidden;
+        }
+        .slideshow img {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0;
+          animation: slideShow 15s infinite;
+        }
+        .slideshow img:nth-child(1) { animation-delay: 0s; }
+        .slideshow img:nth-child(2) { animation-delay: 5s; }
+        .slideshow img:nth-child(3) { animation-delay: 10s; }
+
+        @keyframes slideShow {
+          0% { opacity: 0; }
+          10% { opacity: 1; }
+          30% { opacity: 1; }
+          40% { opacity: 0; }
+          100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+<!-- Navbar -->
+<header class="bg-white shadow-md fixed w-full z-20">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+        <div class="flex items-center space-x-3">
+            <img src="C:\Users\Anjaneya\OneDrive\Desktop\school web\logo.png" alt="School Logo" class="h-14 w-14 rounded-full">
+            <div>
+                <h1 class="text-2xl font-extrabold tracking-wide font-serif">Rural Public School</h1>
+                <p class="text-sm italic text-gray-600">"Education Forever"</p>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex space-x-4">
+            <a href="registration.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700">Registration</a>
+
+            <!-- Dropdown for Student Details -->
+            <div class="relative group">
+                <button class="bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700">Student Details</button>
+                <div class="absolute hidden group-hover:block bg-white text-gray-800 rounded-lg shadow-lg mt-2 w-56">
+                    <a href="all-students.html" class="block px-4 py-2 hover:bg-gray-100">Fetch All Students</a>
+                    <a href="student-search.html" class="block px-4 py-2 hover:bg-gray-100">Fetch by Unique ID</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="flex-1 flex items-center justify-center text-center px-6 relative min-h-screen">
+    <!-- Slideshow Background -->
+    <div class="slideshow">
+        <img src="C:\Users\Anjaneya\OneDrive\Desktop\school web\img6" alt="Background 1">
+        <img src="C:\Users\Anjaneya\OneDrive\Desktop\school web\img7" alt="Background 2">
+        <img src="C:\Users\Anjaneya\OneDrive\Desktop\school web\img8" alt="Background 3">
+    </div>
+
+    <div class="bg-gray-900/60 p-10 rounded-xl shadow-lg relative z-10">
+        <h2 class="text-3xl md:text-4xl font-bold text-white drop-shadow-lg mb-3">Welcome to Your School Portal</h2>
+        <p class="text-lg md:text-xl italic text-yellow-300 mb-6">"Education Forever"</p>
+        <div class="flex flex-wrap justify-center gap-6">
+            <a href="#" class="bg-blue-700 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-800">Student Login</a>
+            <a href="#" class="bg-green-600 text-white px-6 py-3 rounded-lg shadow hover:bg-green-700">Parent Login</a>
+            <a href="#" class="bg-purple-600 text-white px-6 py-3 rounded-lg shadow hover:bg-purple-700">Management Login</a>
+        </div>
+    </div>
+</section>
+
+<!-- Contact & Connect Section -->
+<section class="bg-gray-800/95 text-gray-200 py-10 relative z-10">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 px-6">
+
+        <!-- Contact Us -->
+        <div>
+            <h2 class="text-lg font-semibold mb-3">Contact Us</h2>
+            <p class="text-sm">📍 Diddige, Jagalur Taluk, Davangere District, 577513</p>
+            <p class="text-sm">📞 +91 98765 43210</p>
+            <p class="text-sm">📧 info@ruralpublicschool.edu</p>
+        </div>
+
+        <!-- Connect -->
+        <div>
+            <h2 class="text-lg font-semibold mb-3">Connect</h2>
+            <p class="text-sm">Follow us on social media:</p>
+            <div class="flex space-x-4 mt-2">
+                <a href="https://facebook.com" target="_blank" class="text-blue-500 text-xl hover:text-blue-700">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="text-pink-500 text-xl hover:text-pink-700">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900/90 text-gray-300 py-4 mt-auto relative z-10">
+    <div class="text-center">
+        <p class="text-sm">&copy; 2025 Rural Public School. All rights reserved.</p>
+        <p class="text-xs">Diddige, Jagalur Taluk, Davangere District, 577513</p>
+    </div>
+</footer>
+
+</body>
+</html>
