@@ -1,7 +1,6 @@
 package com.protsaha.brightfuture.controller;
 
 import com.protsaha.brightfuture.model.Teacher;
-import com.protsaha.brightfuture.repository.TeacherRepository;
 import com.protsaha.brightfuture.service.TeacherService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -14,46 +13,47 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/teacher")
-@Tag(name = "Teacher Profile Management " , description ="Endpoints For Managaing Teacher Profile " )
-@CrossOrigin(origins = "https://localhost:63342", allowedHeaders = "*", methods = {
-        RequestMethod.GET,
-        RequestMethod.POST,
-        RequestMethod.PUT,
-        RequestMethod.DELETE,
-        RequestMethod.OPTIONS,
-})
+@Tag(name = "Teacher Management", description = "APIs for managing teacher profiles")
+@CrossOrigin(origins = "http://localhost:63342", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class TeacherController {
 
     @Autowired
-    private TeacherService teacherService; // Teacher Service Object Injected here
+    private TeacherService teacherService;
 
-    @GetMapping("/api/Teacher/")
-    @Operation(summary = "Get all The Teacher Profile Info" , description = "Retrieve a list of all Teachers Profile ")
-    public List<Teacher> getAllTeachers(){
-        return teacherService.getAllTeachers();   // Teacher Services object  takes an Object From The   Services -> Impli -> Teacher Service
+    @GetMapping
+    @Operation(summary = "Get all teachers", description = "Retrieve a list of all teachers")
+    public List<Teacher> getAllTeachers() {
+        return teacherService.getAllTeachers();
     }
 
-    //Method for teacher Profile By using only id
     @GetMapping("/{id}")
-    @Operation( summary = "get the Teacher Profile By using Id"  , description ="Retrieve a Teacher Profile By Using Single Id Number" )
-    public ResponseEntity<?> getTeacherById(@PathVariable String id){
-        Optional<Teacher> teacher= teacherService.getTeacherById(id);
-        return  teacher.map(ResponseEntity::ok).orElseGet(() ->ResponseEntity.notFound().build());
+    @Operation(summary = "Get teacher by ID", description = "Retrieve a teacher by their ID")
+    public ResponseEntity<?> getTeacherById(@PathVariable String id) {
+        Optional<Teacher> teacher = teacherService.getTeacherById(id);
+        return teacher.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    //Method For Storing Data To The Database
     @PostMapping
-    @Operation(summary = "Add a New Teacher" , description = "Add a new teacher  to the database.")
-    public Teacher addTeacher(@RequestBody Teacher teacher){
-        System.out.println("Add a Teacher ");
-        System.out.println("Print Teacher"+teacher.toString());
-        return teacherService.addTeacher(teacher);
+    @Operation(summary = "Add a new teacher", description = "Create and store a new teacher profile")
+    public ResponseEntity<Teacher> addTeacher(@RequestBody Teacher teacher) {
+        System.out.println("addTeacher");
+        System.out.println("print Teacher " + teacher);
+        Teacher createdTeacher = teacherService.addTeacher(teacher);
+        return ResponseEntity.status(201).body(createdTeacher);
     }
 
-    //Delete The Specific Teacher Profile From The  Database using  teacher Id
+    @PutMapping("/{id}")
+    @Operation(summary = "Update teacher by ID", description = "Update an existing teacher’s information")
+    public ResponseEntity<Teacher> updateTeacher(@PathVariable String id, @RequestBody Teacher teacher) {
+        Optional<Teacher> updated = teacherService.updateTeacher(id, teacher);
+        return updated.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete teacher Id " , description = "Delete teacher Specific Profile From The Database")
-    public  ResponseEntity<?> deleteTeacher(@PathVariable String id) {
+    @Operation(summary = "Delete teacher by ID", description = "Delete a teacher profile by their ID")
+    public ResponseEntity<?> deleteTeacher(@PathVariable String id) {
         teacherService.deleteTeacher(id);
         return ResponseEntity.ok().build();
     }

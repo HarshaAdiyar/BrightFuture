@@ -10,4 +10,5 @@ public interface TeacherService {
     Optional<Teacher> getTeacherById(String id);
     Teacher addTeacher(Teacher teacher);
     void deleteTeacher(String id);
+    Optional<Teacher> updateTeacher(String id, Teacher teacher);
 }

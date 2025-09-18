@@ -4,14 +4,8 @@ import lombok.Data;
 
 @Data
 public class Teacher_Address {
-
-    private AddressDetail address;
-
-    @Data
-    public static class AddressDetail {
-        private String street;
-        private String city;
-        private String state;
-        private String pinCode;
-    }
+    private String street;
+    private String city;
+    private String state;
+    private String zipCode;
 }

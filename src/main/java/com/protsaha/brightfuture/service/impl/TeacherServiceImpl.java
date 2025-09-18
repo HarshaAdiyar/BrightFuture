@@ -35,4 +35,12 @@ public class TeacherServiceImpl implements TeacherService {
     public void deleteTeacher(String id) {
         teacherRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Teacher> updateTeacher(String id, Teacher teacher) {
+        return teacherRepository.findById(id).map(existingTeacher -> {
+            teacher.setTeacherId(id); // Ensure the ID remains the same
+            return teacherRepository.save(teacher);
+        });
+    }
 }
