@@ -13,7 +13,7 @@ public class Teacher {
     private String teacherId;
     private Teacher_Employment employment;
     private TeacherAadharInfo aadharInfo;
-    private PersonalDetails personalDetails;
+    private Teacher_Personal_Details personalDetails;
     private Teacher_Address address;
     private List<Teacher_Qualification> qualifications;
     private List<Teacher_Experience> experience;
