@@ -16,7 +16,7 @@ public class Teacher {
     private PersonalDetails personalDetails;
     private Teacher_Address address;
     private List<Teacher_Qualification> qualifications;
-    private List<Experience> experience;
+    private List<Teacher_Experience> experience;
 
     @Override
     public String toString() {
