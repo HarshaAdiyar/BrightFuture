@@ -11,7 +11,7 @@ import java.util.List;
 public class Teacher {
     @Id
     private String teacherId;
-    private Employment employment;
+    private Teacher_Employment employment;
     private TeacherAadharInfo aadharInfo;
     private PersonalDetails personalDetails;
     private Teacher_Address address;
