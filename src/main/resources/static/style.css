@@ -1,201 +1,50 @@
-body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: #f9fafb;
-    margin: 0;
-    padding: 0;
-    background-color:#f4e4ba;
-}
-
+/* Navbar */
 header {
-    max-width: 900px;
-    margin: 20px auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background: #2c3e50;
+  color: white;
+  padding: 10px 20px;
 }
 
-#heading h3 {
-    text-align: center;
-    color: #2563eb;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.top {
-    text-align: center;
-    margin-bottom: 20px;
-}
-.top h4 {
-    font-size: 1.3rem;
-    margin-bottom: 6px;
-}
-.top p {
-    margin: 4px 0;
-    font-size: 0.95rem;
-    color: #6b7280;
+/* Logo + School Name */
+.branding {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* space between logo and name */
 }
 
-.container{
-    margin-top: 25px;
-    border:solid black;
-    padding-left:10px;
+.school-logo {
+  width: 70px;   /* Bigger logo */
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.last{
-   display: grid;
-   grid-template-columns: repeat(3, 1fr);
-   gap: 15px;
-   align-items:centre;
+.branding h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
-.admission, .aadhar, .parent {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    align-items:centre;
-
+/* Menu Links in one row */
+nav ul {
+  list-style: none;
+  display: flex;   /* horizontal layout */
+  gap: 20px;       /* space between links */
+  margin: 0;
+  padding: 0;
 }
 
-.admission h3, .parent h3 {
-    font-size: 1.2rem;
-    margin-bottom: 12px;
-    color: #1f2937;
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.parent h4 {
-    font-size: 1rem;
-    margin-top: 20px;
-    margin-bottom: 8px;
-    border-bottom: 2px solid #e5e7eb;
-    padding-bottom: 4px;
+nav ul li a:hover {
+  color: #f1c40f;
 }
-
-label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 500;
-    color: #374151;
-}
-
-input, select {
-    width:90%;
-    padding: 10px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    background: #f9fafb;
-    margin-bottom: 15px;
-    transition: 0.2s;
-}
-input:focus, select:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
-    outline: none;
-}
-
-.Gender .options, .residential .options {
-    display: flex;
-    gap: 20px;
-}
-.Gender .options label, .residential .options label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 400;
-    margin: 0;
-}
-
-.next {
-    margin-top: 30px;
-    text-align: right;
-}
-.next button {
-    background: #2563eb;
-    color: white;
-    font-weight: 600;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.next button:hover {
-    background: #1d4ed8;
-}
-
-.personal, .previousSchool{
-    display: grid;
-       grid-template-columns: repeat(3, 1fr);
-       gap: 15px;
-       align-items:centre;
-}
-.personal h3, .previousSchool h3, .address h3 {
-    font-size: 1.2rem;
-    margin-bottom: 12px;
-    color: #1f2937;
-}
-.address h4 {
-    font-size: 1rem;
-    margin-top: 20px;
-    margin-bottom: 8px;
-    border-bottom: 2px solid #e5e7eb;
-    padding-bottom: 4px;
-    color: #374151;
-}
-
-.guardianSame {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.guardianSame label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-
-.personal .options, .disability .options {
-    display: flex;
-    gap: 20px;
-}
-.personal .options label, .disability .options label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 400;
-}
-
-.submitSection {
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-between;
-}
-.prevBtn {
-    background: #6b7280;
-    color: white;
-    font-weight: 600;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.prevBtn:hover {
-    background: #4b5563;
-}
-.submitBtn {
-    background: #2563eb;
-    color: white;
-    font-weight: 600;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.submitBtn:hover {
-    background: #1d4ed8;
-}
-

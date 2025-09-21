@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rural Public School</title>
+    <style>
+        body {
+          margin: 0;
+          font-family: Arial, sans-serif;
+        }
+
+        /* Top bar */
+        .topbar {
+          background-color: #eee;
+          color: #333;
+          font-size: 14px;
+          padding: 8px 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .topbar nav a {
+          color: #4b0082;
+          text-decoration: none;
+          margin-left: 10px;
+        }
+        .topbar nav a:hover {
+          text-decoration: underline;
+        }
+
+        /* Header */
+        header {
+          background-color: #4b0082; /* fallback purple */
+          color: white;
+          display: flex;
+          align-items: center;
+          padding: 15px 30px;
+          position: relative;
+
+          /* Background logo */
+          background-image: url('Trust Logo_page-0001.jpg');
+          background-repeat: no-repeat;
+          background-size: 70px auto;
+          background-position: 20px center;
+        }
+        header h2 {
+          margin: 0;
+          margin-left: 100px; /* push text so logo is visible */
+          font-size: 24px;
+        }
+
+        /* Menu */
+        .menu-bar {
+          background-color: white;
+          display: flex;
+          justify-content: center;
+          gap: 30px;
+          padding: 15px;
+          border-bottom: 1px solid #ddd;
+        }
+        .menu-bar button {
+          background-color: #4b0082;
+          color: white;
+          border: none;
+          padding: 12px 25px;
+          border-radius: 8px;
+          font-size: 16px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: background 0.3s ease;
+        }
+        .menu-bar button:hover {
+          background-color: #36005f;
+        }
+
+        /* Banner */
+        .banner {
+          width: 100%;
+          height: 450px;
+          background: url('stadium.jpg') no-repeat center center/cover;
+        }
+
+        /* Footer */
+        footer {
+          background-color: #4b0082;
+          color: white;
+          text-align: center;
+          padding: 15px;
+          margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+    <div>Welcome to Rural Public School</div>
+    <nav>
+        <a href="#">Calendar</a> ·
+        <a href="#">Directory</a> ·
+        <a href="#">Admissions</a>
+    </nav>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+    <h2>Rural Public School</h2>
+</header>
+
+<!-- Menu -->
+<div class="menu-bar">
+    <button onclick="window.location.href='registration.html'">Registration Form</button>
+    <button onclick="window.location.href='student-details.html'">Student Details</button>
+</div>
+
+<!-- Banner -->
+<div class="banner"></div>
+
+<!-- Footer -->
+<footer>
+    <p>© <span id="year"></span> Rural Public School · All rights reserved.</p>
+</footer>
+
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

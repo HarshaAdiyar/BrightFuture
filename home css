@@ -1,0 +1,12 @@
+your-project/
+  index.html          ← rename your “home page.html” to this (avoid spaces)
+  assets/
+    css/
+      kinkaid-inspired.css   ← the CSS from the canvas
+    img/
+      hero.jpg               ← your hero image
+      card-1.jpg
+      card-2.jpg
+      card-3.jpg
+    js/
+      main.js                ← optional for extras later
