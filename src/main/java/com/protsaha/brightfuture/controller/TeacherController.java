@@ -14,7 +14,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/teacher")
 @Tag(name = "Teacher Management", description = "APIs for managing teacher profiles")
-@CrossOrigin(origins = "http://localhost:63342", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class TeacherController {
 
     @Autowired
