@@ -9,9 +9,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Staff {
     @Id
     private String staffId;
-    private PersonalDetails personalDetails;
-    private AadharInfo aadharInfo;
-    private Address address;
+    private Staff_personaldetails personalDetails;
+    private Staff_Aadharinfo aadharInfo;
+    private Staff_Address address;
     private Staff_Employment employment;
 
     @Override
